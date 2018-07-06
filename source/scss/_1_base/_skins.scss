@@ -1,0 +1,44 @@
+// Skins
+//
+// By importing the `_1_base/_skins` file, background and text color atomic classes are made available for use in the html. `.bg-{{color}}` and `.{{color}}` classes are created for each color listed above. Shades can also be used like `.bg-{{color}}-{{shade}}` and `.{{color}}-{{shade}}`.
+//
+// Style guide: colors.skins
+
+// to generate classes for each color, if needed
+@each $color, $val in $colors {
+    @if type-of($val) == 'map' {
+        @each $shade, $shade-val in $val {
+            @if $shade == 'base' {
+                .bg-#{$color},
+                %bg-#{$color} {
+                    background-color: $shade-val;
+                }
+
+                .#{$color},
+                %#{$color} {
+                    color: $shade-val;
+                }
+            } @else {
+                .bg-#{$color}-#{$shade},
+                %bg-#{$color}-#{$shade} {
+                    background-color: $shade-val;
+                }
+
+                .#{$color}-#{$shade},
+                %#{$color}-#{$shade} {
+                    color: $shade-val;
+                }
+            }
+        }
+    } @else {
+        .bg-#{$color},
+        %bg-#{$color} {
+            background-color: $val;
+        }
+
+        .#{$color},
+        %#{$color} {
+            color: $val;
+        }
+    }
+}

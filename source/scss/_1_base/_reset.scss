@@ -1,0 +1,127 @@
+//
+//   @reset
+// ---------------------------------------------------------
+//  _1_base/_reset.scss
+// ---------------------------------------------------------
+//
+//  Base styles for all forms and form related elements
+//
+//  This reset institutes the border-box box model and then
+//  it's just normalize.css from here on out.
+//
+// ---------------------------------------------------------
+
+@viewport { width: device-width; }
+
+
+
+
+//
+//   @box-model
+// --------------------------------------------------------
+//
+//  Change from `box-sizing: content-box` so that `width`
+//  is not affected by `padding` or `border`.
+//
+// --------------------------------------------------------
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+
+
+//
+//   @fast-click
+// --------------------------------------------------------
+//
+//  Removing the 350ms click delay in iOS
+//
+// --------------------------------------------------------
+a,
+button,
+input,
+select,
+textarea,
+label,
+summary {
+  touch-action: manipulation;
+}
+
+
+
+
+//
+//   @normalize
+// --------------------------------------------------------
+//
+//  normalize.css | MIT License | git.io/normalize
+//  loaded via PostCSS Normalize - https://github.com/jonathantneal/postcss-normalize
+//
+// --------------------------------------------------------
+
+/* stylelint-disable */
+@import-normalize {}
+/* stylelint-enable */
+
+
+
+
+//
+//   @normalize-opentype
+// --------------------------------------------------------
+//
+//  Adds OpenType features—ligatures, kerning, and more—to Normalize.css.
+//  https://github.com/kennethormandy/normalize-opentype.css
+//
+// --------------------------------------------------------
+
+@import '_reset/normalize-opentype';
+
+
+
+
+//
+//   @Sasspool Reset
+// --------------------------------------------------------
+//
+//  Typical things we reset.
+//
+// --------------------------------------------------------
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: normal;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+ul,
+ol {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+// Media
+img,
+embed,
+iframe,
+object,
+audio,
+video {
+  max-width: 100%;
+}
+
+// iframe
+iframe {
+  border: 0;
+}

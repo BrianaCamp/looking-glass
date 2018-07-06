@@ -1,0 +1,16 @@
+{
+  plugins: ['transform-runtime'],
+  presets: [
+    [
+      'env',
+      {
+        targets: {
+          browsers: ['> .5%', 'not op_mini all', 'IE >= 11'],
+        },
+      },
+    ],
+  ],
+  ignore: '/node_modules/',
+  minified: true,
+  compact: true,
+}

@@ -1,0 +1,143 @@
+// Centering
+//
+// Center objects with unknown widths vertically **and** horizontally.
+//
+// ```
+// .sample-usage {
+//      @include center(false);
+// }
+// ```
+//
+// $margin - true (default) for margin-based horizontal centering, false for transform-based horizontal centering
+//
+// Style guide: mixins.centering
+
+// Repetitive to avoid transforms overriding one another.
+@mixin center($margin: true) {
+    @if $margin == true {
+        margin-left: auto;
+        margin-right: auto;
+        transform: translateY(-50%);
+    } @else {
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    position: relative;
+    top: 50%;
+}
+
+
+// Horizontal Centering
+//
+// Center objects with unknown widths horizontally.
+//
+// ```
+// .sample-usage {
+//      @include horizontal-center;
+// }
+// ```
+//
+// $margin - true (default) for margin-based centering, false for transform-based centering
+//
+// Style guide: mixins.centering.horizontal
+
+@mixin horizontal-center($margin: true) {
+    @if $margin == true {
+        margin-left: auto;
+        margin-right: auto;
+    } @else {
+        left: 50%;
+        position: relative;
+        transform: translateX(-50%);
+    }
+}
+
+
+// Vertical Centering
+//
+// Center objects with unknown widths vertically.
+//
+// ```
+// .sample-usage {
+//      @include vertical-center;
+// }
+// ```
+//
+// Style guide: mixins.centering.vertical
+
+@mixin vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+
+
+// Center Inside
+//
+// Center child objects vertically **and** horizontally.
+//
+// ```
+// .sample-usage {
+//      @include center-inside;
+// }
+// ```
+//
+// Weight: 10
+//
+// Style guide: mixins.centering.inside
+
+@mixin center-inside {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+// Horizontal Center Inside
+//
+// Center child objects horizontally.
+//
+// ```
+// .sample-usage {
+//      @include horizontal-center-inside(false);
+// }
+// ```
+//
+// $align - true (default) for text-align based horizontal centering, false for flexbox-based horizontal centering
+//
+// Weight: 11
+//
+// Style guide: mixins.centering.inside-horizontal
+
+@mixin horizontal-center-inside($align: true) {
+    @if $align == true {
+        text-align: center;
+    } @else {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+// Vertical Center Inside
+//
+// Center child objects vertically.
+//
+// ```
+// .sample-usage {
+//      @include vertical-center-inside;
+// }
+// ```
+//
+// Weight: 12
+//
+// Style guide: mixins.centering.inside-vertical
+
+@mixin vertical-center-inside {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

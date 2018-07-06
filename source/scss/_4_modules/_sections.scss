@@ -1,0 +1,46 @@
+//
+//   @sections
+// --------------------------------------------------------
+//  _5_sections/_sections.scss
+// --------------------------------------------------------
+//
+//  Individual horizontal chunks of the page. These styles
+//  are good for shared heading, vertical spacing between
+//  modules, and background colors. Pairs really well with
+//  .containers (to control horizontal spacing).
+//
+// --------------------------------------------------------
+.section {
+    padding: #{$gutter * 3} 0;
+}
+
+.section--large {
+    padding: #{$gutter * 6} 0;
+}
+
+.section--flush {
+    padding: 0;
+}
+
+.section--black {
+    background-color: color('black');
+    color: color('white');
+}
+
+//   @Section Titles
+// --------------------------------------------------------
+//  Section titles are used in a consistent manner through
+//  the design. If these vary too much from the standard,
+//  they should be part of individual modules.
+// --------------------------------------------------------
+// .section__title {
+
+// }
+
+//   @Section Text
+// --------------------------------------------------------
+//  Introductory text for sections
+// --------------------------------------------------------
+// .section__description {
+
+// }

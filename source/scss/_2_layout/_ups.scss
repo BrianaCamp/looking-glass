@@ -1,0 +1,83 @@
+//
+//   @ups
+// --------------------------------------------------------
+//  _2_layout/_ups.scss
+// --------------------------------------------------------
+//
+//  UPS?
+//
+//  Yep, ups.  These are global classes that will set
+//  their direct children to a specific width.  You will
+//  mainly use these in grids, and maybe with tabs or
+//  navigations.
+//
+//  For instance: grid--4up will set each child to 25%
+//
+//  Ups can be be used with the same responsive namespaces
+//  as grids, for example ('grid--1up medium--grid--2up large--grid--4up')
+//
+//  Example: Ups and grids
+//  <div class="grid grid--2up small--grid--3up">
+//    <div class="grid__item"><img src="http://fillmurray.com/500/300"></div>
+//    <div class="grid__item"><img src="http://fillmurray.com/500/300"></div>
+//  </div><!--/grid-->
+//  <div class="grid grid--3up">
+//    <div class="grid__item"><img src="http://fillmurray.com/500/300"></div>
+//    <div class="grid__item"><img src="http://fillmurray.com/500/300"></div>
+//    <div class="grid__item"><img src="http://fillmurray.com/500/300"></div>
+//  </div><!--/grid-->
+//
+// -------------------------------------------------------
+
+@mixin up($namespace: '', $columns: 2) {
+    .#{$namespace}grid--#{$columns}up > * {
+        flex-basis: #{100% / $columns};
+        max-width: #{100% / $columns};
+    }
+
+    @if $grid-type == 'modern' {
+        @supports (display: grid) {
+            .#{$namespace}grid--#{$columns}up {
+                grid-template-columns: repeat(#{$columns}, 1fr);
+            }
+
+            .#{$namespace}grid--#{$columns}up > * {
+                grid-column: auto / span 1;
+                max-width: none;
+            }
+        }
+    }
+}
+
+@mixin ups($namespace: '') {
+    // Two up
+    @include up($namespace: $namespace, $columns: 2);
+
+    // Three up
+    @include up($namespace: $namespace, $columns: 3);
+
+    // Four up
+    @include up($namespace: $namespace, $columns: 4);
+
+    // Five up
+    @include up($namespace: $namespace, $columns: 5);
+
+    // Six up
+    @include up($namespace: $namespace, $columns: 6);
+}
+
+// Our regular, non-responsive ups classes.
+@include ups;
+
+// Our responsive classes
+@each $name, $val in $grid-breakpoints {
+    @if type-of($val) == 'map' {
+        @media #{query(map-get($val, 'query'))} {
+            @include ups($namespace: '#{$name}--');
+        }
+    } @else {
+        @media #{query($val)} {
+            @include ups($namespace: '#{$name}--');
+        }
+    }
+}

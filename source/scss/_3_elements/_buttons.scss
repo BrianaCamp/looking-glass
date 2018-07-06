@@ -1,0 +1,114 @@
+// Buttons
+//
+// Your standard button provides an easily identified clickable
+// target.
+//
+// Note: do not use `role="button"` on link elements that are
+// behaving as links. Doing that tells a screen reader that
+// the element is a button but the space bar does not work
+// to trigger the link. This can be fixed with JS, but there
+// is no reason when we should probably avoid the use in the
+// first place.
+//
+// .is-active - Useful for showing active state
+// .m--large - Bigger version of the button
+// .m--inline - To be used within a text block
+// .m--block - Full width buttons
+//
+// Markup: ../kss/templates/button.hbs
+//
+// Style guide: elements.buttons
+
+button,
+[role='button'],
+.btn {
+    @include font-size('l');
+
+    background-color: $text-color;
+    border: 0;
+    border-radius: $border-radius;
+    color: $body-color;
+    cursor: pointer;
+    display: inline-block;
+    outline: none;
+    padding: 1em 3em;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: all $speed $ease;
+    vertical-align: middle;
+}
+
+button.is-active,
+[role='button'].is-active,
+.btn.is-active {
+    opacity: 0.75;
+}
+
+button:hover,
+[role='button']:hover,
+.btn:hover,
+button:focus,
+[role='button']:focus,
+.btn:focus {
+    color: $body-color;
+    opacity: 0.85;
+}
+
+// --------------------------------------------------------
+//
+//  A btn modifier, large
+//
+//  Example: .btn--large
+//  <a class="btn btn--large">Large button</a>
+//
+// --------------------------------------------------------
+
+button.m--large,
+[role='button'].m--large,
+.btn.m--large {
+    @include font-size('xl');
+}
+
+// --------------------------------------------------------
+//
+//  A button modifier, if this button is in a paragraph or
+//  in anything else that has a defined font-size, this
+//  modifier will make the btn inherit the font-size of
+//  the partent.
+//
+//  Example: .m--inline
+//  <p>Here's some text <a role="button" class="m--inline">Cool button</a> text keeps going</p>
+//
+// --------------------------------------------------------
+
+button.m--inline,
+[role='button'].m--inline,
+.btn.m--inline {
+    font-size: 1em;
+    padding: 0.25em 0.75em;
+}
+
+// --------------------------------------------------------
+//
+//  A btn modifier - makes the button display block, 100%
+//  width and aligns the text to the center.  Removes left
+//  and right padding since the text is center aligned, it
+//  is not needed.  Actually sometimes having the padding
+//  on the left and right causes problems if the centered
+//  text is quite long - so we just remove it.
+//
+//  Example: .m--block
+//  <a href="#" role="button" class="m--block">Block button</a>
+//
+// --------------------------------------------------------
+
+button.m--block,
+[role='button'].m--block,
+.btn.m--block {
+    display: block;
+    padding-left: $gutter;
+    padding-right: $gutter;
+    text-align: center;
+    width: 100%;
+}

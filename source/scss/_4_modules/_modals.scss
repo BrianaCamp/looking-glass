@@ -1,0 +1,45 @@
+//
+//   @modals
+// ---------------------------------------------------------
+//  _4_modules/_modals.scss
+// ---------------------------------------------------------
+//
+//  These are very basic modals.
+//
+// ---------------------------------------------------------
+.modal {
+    @include cover;
+
+    background: color('white');
+    border: 1em solid color('black');
+    color: color('black');
+    position: fixed;
+    z-index: zindex('modal');
+}
+
+// modal header
+.modal__header {
+    height: 3em;
+    padding: 1em;
+}
+
+.modal__header p {
+    font-size: 0.8em;
+    line-height: 1.2;
+}
+
+.modal__close {
+    position: absolute;
+    right: 1.4em;
+    top: 1em;
+}
+
+// modal body
+.modal__body {
+    bottom: 1em;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 3em; // same as header height
+}

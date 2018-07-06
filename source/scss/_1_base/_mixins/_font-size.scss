@@ -1,0 +1,122 @@
+// Font Size
+//
+// Shortcut mixin to set font-size.
+// Primarily used with the `$font-sizes` map from _vars.scss
+//
+// Uses the `responsive-font-size` and `make-font-size` mixins
+// (which should not be used independently).
+//
+// ```
+// @include font-size('m');
+// ```
+//
+// $fs-size - top level size value from the map, eg. 'xs'
+// $fs-map - $font-sizes by default, but you can specify a different map to pull from if needed
+// $fs-breakpoints - $breakpoints by default, but you can specify a different map to pull from if needed
+//
+// Style guide: mixins.font-size
+
+$responsive-typography: false !default;
+
+@mixin font-size($fs-size, $fs-map: $font-sizes, $fs-breakpoints: $breakpoints) {
+    @if $responsive-typography {
+        @if type-of(map-get($fs-map, $fs-size)) == 'map' {
+            @include responsive-font-size($fs-breakpoints: $fs-breakpoints, map-get($fs-map, $fs-size) ...);
+        } @else if map-has-key($fs-map, $fs-size) {
+            @include make-font-size(map-get($fs-map, $fs-size));
+        } @else if type-of($fs-size) == 'map' {
+            @include responsive-font-size($fs-breakpoints: $fs-breakpoints, $fs-size...);
+        } @else {
+            @include make-font-size($fs-size);
+        }
+    } @else {
+        @if type-of(map-get($fs-map, $fs-size)) == 'map' {
+            @each $fs-breakpoint, $fs-font-size in map-get($fs-map, $fs-size) {
+                @if $fs-breakpoint == null {
+                    @include make-font-size($fs-font-size);
+                } @else {
+                    @media #{query($fs-breakpoint, $bp-map: $fs-breakpoints)} {
+                        @include make-font-size($fs-font-size);
+                    }
+                }
+            }
+        } @else if map-has-key($fs-map, $fs-size) {
+            @include make-font-size(map-get($fs-map, $fs-size));
+        } @else {
+            @include make-font-size($fs-size);
+        }
+    }
+}
+
+// responsive typography function for mixin font-size
+@mixin responsive-font-size($min-font-size: 16px, $max-font-size: 18px, $lower-font-range: null, $upper-font-range: null, $fs-breakpoints: $breakpoints) {
+    $base-unit: unit(nth($min-font-size, 1));
+    $lower-font-range-abs: null;
+    $upper-font-range-abs: null;
+
+    // ensure the max-size is the same unit as the min-size
+    $max-font-size: replace-nth($max-font-size, 1, convert($base-unit, nth($max-font-size, 1)));
+
+    @if $lower-font-range != null {
+        // grab lower-font-range value
+        @if map-has-key($fs-breakpoints, $lower-font-range) {
+            $lower-font-range: breakpoint($lower-font-range, $bp-map: $fs-breakpoints);
+        }
+
+        // create a abs unit variable for the calc that is the same unit as the base
+        $lower-font-range-abs: convert($base-unit, $lower-font-range);
+    }
+
+    @if $upper-font-range != null {
+        // grab upper-font-range value
+        @if map-has-key($fs-breakpoints, $upper-font-range) {
+            $upper-font-range: breakpoint($upper-font-range, $bp-map: $fs-breakpoints);
+        }
+
+        // create a abs unit variable for the calc that is the same unit as the base
+        $upper-font-range-abs: convert($base-unit, $upper-font-range);
+    }
+
+    @include make-font-size($min-font-size);
+
+    @if $lower-font-range == null {
+        @if $upper-font-range != null {
+            font-size: calc(#{nth($min-font-size, 1)} + #{strip-units(nth($max-font-size, 1) - nth($min-font-size, 1))} * ((100vw - #{0 * 1px}) / #{strip-units($upper-font-range-abs)}));
+        }
+    } @else {
+        @if $upper-font-range != null {
+            @media #{query($lower-font-range, $bp-map: $fs-breakpoints)} {
+                @include make-font-size((nth($min-font-size, 1) + nth($max-font-size, 1)) / 2);
+
+                // min-size + (max-size - min-size) * ( (100vw - min-width) / ( max-width - min-width) )
+                // eg. — font-size: calc(12px + 9 * ( (100vw - 420px) / 260));
+                // the values should be in px for this to work correctly
+                font-size: calc(#{nth($min-font-size, 1)} + #{strip-units(nth($max-font-size, 1) - nth($min-font-size, 1))} * ((100vw - #{$lower-font-range-abs}) / #{strip-units($upper-font-range-abs - $lower-font-range-abs)}));
+            }
+        }
+    }
+
+    @if $upper-font-range != null {
+        @media #{query($upper-font-range, $bp-map: $fs-breakpoints)} {
+            @include make-font-size($max-font-size);
+        }
+    }
+}
+
+// Utility function for mixin font-size
+@mixin make-font-size($fs-font-size) {
+    // If $fs-font-size is a list, include
+    // both font-size and line-height and,
+    // potentially, letter-spacing
+    @if type-of($fs-font-size) == 'list' {
+        font-size: nth($fs-font-size, 1);
+        @if (length($fs-font-size) > 2) {
+            letter-spacing: nth($fs-font-size, 3);
+        }
+        @if (length($fs-font-size) > 1) {
+            line-height: nth($fs-font-size, 2);
+        }
+    } @else {
+        font-size: $fs-font-size;
+    }
+}
