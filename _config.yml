@@ -1,7 +1,5 @@
 ---
 title: Metoo
-url: ''
-# baseurl: /sub-directory
 timezone: UTC
 collections:
   posts:
