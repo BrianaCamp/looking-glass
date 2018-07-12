@@ -21,7 +21,7 @@
     "test:ui": "yarn mocha test/ --timeout 5000",
     "watch:css": "onchange 'source/scss/**/*.scss' -o 'stylelint {{changed}} && yarn build:css'",
     "watch:js": "webpack -w",
-    "serve": "JEKYLL_ENV=development bundle exec jekyll build --watch -I --config '_config.yml,_config_dev.yml'",
+    "serve": "JEKYLL_ENV=development bundle exec jekyll serve --watch -I --config '_config.yml'",
     "start": "yarn build:dev && parallelshell 'yarn watch:css' 'yarn watch:js' 'yarn serve'"
   },
   "devDependencies": {
