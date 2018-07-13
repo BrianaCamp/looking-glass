@@ -359,9 +359,9 @@ $success-border: #0CA129;
 //
 // Style guide: sass.borders
 
-$border-color: color('gray');
+$border-color: color('black');
 $border-style: solid;
-$border-width: 1px;
+$border-width: 3px;
 $border-radius: 3px;
 $border: $border-width $border-style $border-color;
 
