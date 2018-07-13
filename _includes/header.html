@@ -11,15 +11,15 @@
             {% endif %}
         </a>
 
-        <input type="checkbox" id="menu-toggle" class="checkbox-toggle js-checkbox-toggle" tabindex="0" data-html-toggle="menu-active"></input>
+        {% comment %} <input type="checkbox" id="menu-toggle" class="checkbox-toggle js-checkbox-toggle" tabindex="0" data-html-toggle="menu-active"></input>
         <label for="menu-toggle" class="site-nav__btn burger">
             <span class="burger__inner"></span>
             Toggle Main Navigation
-        </label>
+        </label> {% endcomment %}
         <nav class="site-nav" role="navigation">
             <ul class="site-nav__list">
-                <li><a href="/sample/"{% if page.url contains "/sample/" %} class="is-active"{% endif %}>Item</a></li>
-                <li><a href="/sample2/"{% if page.url contains "/sample2/" %} class="is-active"{% endif %}>Item 2</a></li>
+                <li><a href="/about/"{% if page.url contains "/about/" %} class="is-active"{% endif %}>about</a></li>
+                <li><a href="/journal/"{% if page.url contains "/journal/" %} class="is-active"{% endif %}>Journal</a></li>
             </ul>
         </nav>
     </div>

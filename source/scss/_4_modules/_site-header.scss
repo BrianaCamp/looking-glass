@@ -50,5 +50,8 @@
 //
 // --------------------------------------------------------
 [role='navigation'] {
+    align-items: center;
+    display: flex;
     float: right;
+    justify-content: flex-end;
 }
