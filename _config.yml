@@ -17,7 +17,7 @@ defaults:
     type: posts
   values:
     layout: post
-    permalink: "/posts/:title/"
+    permalink: "/journal/:title/"
     author: ''
     image: ''
     description: ''
