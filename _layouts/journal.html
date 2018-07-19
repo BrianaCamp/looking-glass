@@ -1,0 +1,11 @@
+---
+layout: page
+---
+
+<ul>
+{% for post in site.journal %}
+
+        <li> <a href="{{ post.url }}">{{ post.title }}</a></li>
+
+{% endfor %}
+</ul>

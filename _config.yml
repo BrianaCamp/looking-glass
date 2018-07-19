@@ -6,7 +6,7 @@ collections:
     title: Posts
     output: true
   posts:
-    title: Posts
+    title: Journal
     output: true
   uploads:
     title: Uploads
