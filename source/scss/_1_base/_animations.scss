@@ -1,0 +1,47 @@
+//
+//   @animations
+// --------------------------------------------------------
+//  _1_base/_animations.scss
+// --------------------------------------------------------
+//
+//  Keyframe animation functions
+//
+// --------------------------------------------------------
+
+// hardware acceleration
+@mixin is-accelerated {
+    transform: translate3d(0, 0, 0);
+
+    // backface-visibility: hidden;
+    // perspective: 1000;
+}
+
+// if your animation is still flickering after applying the style above, try the commented out properties below to fix the problem
+
+
+
+
+// rotating
+// @keyframes rotating {
+//     from {
+//         transform: rotate(0deg);
+//     }
+
+//     to {
+//         transform: rotate(360deg);
+//     }
+// }
+
+
+
+
+// fade-in
+// @keyframes fade-in {
+//     0% {
+//         opacity: 0;
+//     }
+
+//     100% {
+//         opacity: 1;
+//     }
+// }

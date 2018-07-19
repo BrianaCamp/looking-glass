@@ -1,0 +1,91 @@
+//
+//   @units
+// --------------------------------------------------------
+//  _1_base/_mixins/_units.scss
+// --------------------------------------------------------
+//
+//  Functions for pixel conversions
+//
+// --------------------------------------------------------
+
+$rems: true !default; // Set to false if you want to use absolute pixels in your dimensions
+$absolute-sizing-unit: 1px !default; // This needs the one in front of it to convert variables to numbers
+$base-font-size: 16 !default;
+$default-browser-font-size: 16 !default;
+
+// Make em (or rem, with a $context of 16) to pxs using base-font-size
+// echo as: font-size: px(#em);
+// if the base is another value, say 24px, write px(12, 24)
+@function px($target, $context: $base-font-size) {
+    @if strip-units($target) == 0 {
+        @return 0;
+    } @else {
+        @return (strip-units($target) * strip-units($context)) * 1px;
+    }
+}
+
+// Make px to ems using base-font-size
+// echo as: font-size: em(#px);
+// if the base is another value, say 24px, write em(12, 24)
+@function em($target, $context: $base-font-size) {
+    @if strip-units($target) == 0 {
+        @return 0;
+    } @else {
+        @return (strip-units($target) / strip-units($context)) * 1em;
+    }
+}
+
+// Make px to rems using 16px default browser font size
+// echo as: font-size: rem(#px);
+// if the base is another value, say 24px, write rem(12, 24)
+@function rem($target, $context: $default-browser-font-size) {
+    @if strip-units($target) == 0 {
+        @return 0;
+    } @else if not $rems {
+        @return (round(strip-units($target))) * $absolute-sizing-unit;
+    } @else {
+        @return (strip-units($target) / strip-units($context)) * 1rem;
+    }
+}
+
+// Make px to % using 960px;
+// echo as: width: percent(240);
+// if the base is another value, say 16px, write percent(10, 16)
+@function percent($target, $context: 960) {
+    @if strip-units($target) == 0 {
+        @return 0;
+    }
+    @return (strip-units($target) / strip-units($context)) * 100%;
+}
+
+// convert one unit into another
+@function convert($target-unit, $val, $context: $default-browser-font-size) {
+    @if $target-unit == 'px' {
+        @if unit($val) == 'px' {
+            @return $val;
+        } @else {
+            @return px($val, $context);
+        }
+    } @else if $target-unit == 'rem' {
+        @if unit($val) == 'rem' {
+            @return $val;
+        } @else if unit($val) == 'px' {
+            @return rem($val, $context);
+        } @else if unit($val) == 'em' {
+            @return strip-units($val) * 1rem;
+        }
+    } @else if $target-unit == 'em' {
+        @if unit($val) == 'em' {
+            @return $val;
+        } @else if unit($val) == 'px' {
+            @return em($val, $context);
+        } @else if unit($val) == 'rem' {
+            @return strip-units($val) * 1em;
+        }
+    }
+}
+
+// to remove the unit from the numbers that are passed
+@function strip-units($number) {
+    @return $number / ($number * 0 + 1);
+}

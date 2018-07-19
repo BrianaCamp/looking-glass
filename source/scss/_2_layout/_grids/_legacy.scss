@@ -1,0 +1,318 @@
+//
+//   @grids
+// ---------------------------------------------------------
+//
+//  A modified form of csswizardry-grids.
+//
+// ---------------------------------------------------------
+
+// ------------------------------------
+//
+//  Contents
+//
+// ------------------------------------
+
+//  * INTRODUCTION.........How the grid system works.
+//  * MIXINS...............Library mixins.
+//  * GRID SETUP...........Build the grid structure.
+//
+//  Indebted to the following:
+//  --------------------------
+//  https://github.com/inuitcss/inuitcss
+
+// ------------------------------------
+//
+//  Introduction
+//
+// ------------------------------------
+
+// sasspool grids provides you with widths to suit a number of breakpoints
+// designed around devices of a size you specify. Out of the box, sasspool
+// grids caters to the following types of device:
+//
+// palm     --  palm-based devices, like phones and small tablets
+// lap      --  lap-based devices, like iPads or laptops
+// portable --  all of the above
+// desk     --  stationary devices, like desktop computers
+// regular  --  any/all types of device
+//
+// These namespaces are then used in the library to give you the ability to
+// manipulate your layouts based around them, for example:
+//
+//    <div class="grid__item  c-1of1  lap--c-1of2  desk--c-1of3">
+//
+// This would give you a grid item which is 100% width unless it is on a lap
+// device, at which point it become 50% wide, or it is on a desktop device, at
+// which point it becomes 33.333% width.
+//
+// All classes in sasspool grids follow this patten, so you should fairly
+// quickly be able to piece together any combinations you can imagine, for
+// example:
+//
+//    `class="grid__item  c-1of1  lap--c-1of2  desk--c-1of3"`
+//
+//    `class="grid__item  c-1of4  palm--c-1of2"`
+//
+//    `class="grid__item  palm--c-1of3  desk--c-5of12"`
+//
+// **NOTE:**
+// Legacy grids rely on `inline-block` for styling.
+// This means all white-space between `grid__item`s in the html should be removed.
+
+// ------------------------------------
+//
+//  Mixins
+//
+// ------------------------------------
+
+//  These mixins are for the library to use only, you should not need to modify
+//  them at all.
+
+// Create our width classes, prefixed by the specified namespace.
+@mixin legacy-widths($namespace: '', $columns: $cols) {
+    @for $i from 1 through $columns {
+        // go through each number up to the total number of columns
+
+        @if $columns % $i == 0 {
+            // if the number of columns is divisible by this number, we'll create column classes for it
+            @for $j from 1 through $i {
+                // go through each number grouping of columns to set specific size classes
+                $gcd: gcd($j, $i); // grab the greatest common divisor for these columns to see if it is the same as a previous class
+
+                @if $gcd == 1 {
+                    // if the gcd is 1, let's write new styles as this width hasn't already been set
+                    $width: percentage($j / $i); // let's get the percentage width
+
+                    .#{$namespace}c-#{$j}of#{$i} {
+                        width: $width;
+                    }
+
+                    @if $push == true {
+                        .push--#{$namespace}c-#{$j}of#{$i} {
+                            left: $width;
+                        }
+                    }
+
+                    @if $pull == true {
+                        .pull--#{$namespace}c-#{$j}of#{$i} {
+                            right: $width;
+                        }
+                    }
+                } @else {
+                    // find the reduced fraction class this column is equal to
+                    $ii: $i / $gcd;
+                    $jj: $j / $gcd;
+
+                    .#{$namespace}c-#{$j}of#{$i} {
+                        @extend .#{$namespace}c-#{$jj}of#{$ii};
+                    }
+
+                    @if $push == true {
+                        .push--#{$namespace}c-#{$j}of#{$i} {
+                            @extend .push--#{$namespace}c-#{$jj}of#{$ii};
+                        }
+                    }
+
+                    @if $pull == true {
+                        .pull--#{$namespace}c-#{$j}of#{$i} {
+                            @extend .pull--#{$namespace}c-#{$jj}of#{$ii};
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Create our grid variants
+@mixin legacy-gutter-variants($namespace: '', $variant: '', $newGutter: $gutter) {
+    .#{$namespace}grid--#{$variant} {
+        margin: #{-1 * $newGutter} 0 0 #{-1 * $newGutter};
+    }
+
+    .#{$namespace}grid--#{$variant} > .grid__item {
+        padding: $newGutter 0 0 $newGutter;
+    }
+}
+
+// ------------------------------------
+//
+//  Legacy grid setup
+//
+// ------------------------------------
+
+@if $grid-type == 'legacy' {
+    // 1. Allow the grid system to be used on lists.
+    // 2. Remove any margins and paddings that might affect the grid system.
+    // 3. Apply a negative `margin-left` and `margin-top` to negate the columns’ gutters.
+    .grid {
+        list-style: none; // [1] */
+        margin: #{-1 * $gutter} 0 0 #{-1 * $gutter}; // [2][3] */
+        padding: 0; // [2] */
+    }
+
+    .grid--flex {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    // 1. Cause columns to stack side-by-side.
+    // 2. Space columns apart.
+    // 3. Align columns to the tops of each other.
+    // 4. Full-width unless told to behave otherwise.
+    // 5. Required to combine fluid widths and fixed gutters.
+    .grid__item {
+        box-sizing: border-box; // [5] */
+        display: inline-block; // [1] */
+        padding: $gutter 0 0 $gutter; // [2] */
+        position: relative;
+        vertical-align: top; // [3] */
+        width: 100%; // [4] */
+    }
+
+    .grid__item--flex {
+        display: flex;
+    }
+
+    // Reversed grids allow you to structure your source in the opposite order to
+    // how your rendered layout will appear. Extends `.grid`.
+    .grid--rev {
+        direction: rtl;
+        text-align: left;
+    }
+
+    .grid--rev > .grid__item {
+        direction: ltr;
+        text-align: left;
+    }
+
+    // Gutterless grids have all the properties of regular grids, minus any spacing.
+    // Extends `.grid`.
+    @include legacy-gutter-variants($variant: 'full', $newGutter: 0);
+    @each $name, $val in $grid-breakpoints {
+        @if type-of($val) == 'map' {
+            @media #{query(map-get($val, 'query'), 'max')} {
+                @include legacy-gutter-variants($namespace: 'lt-#{$name}--', $variant: 'full', $newGutter: 0);
+            }
+        } @else {
+            @media #{query($val, 'max')} {
+                @include legacy-gutter-variants($namespace: 'lt-#{$name}--', $variant: 'full', $newGutter: 0);
+            }
+        }
+    }
+
+    // Align the entire grid to the right. Extends `.grid`.
+    .grid--right {
+        text-align: right;
+    }
+
+    .grid--right > .grid__item {
+        text-align: left;
+    }
+
+    // Centered grids align grid items centrally without needing to use push or pull
+    // classes. Extends `.grid`.
+    .grid--center {
+        text-align: center;
+    }
+
+    .grid--center > .grid__item {
+        text-align: left;
+    }
+
+    // Align grid cells vertically (`.grid--middle` or `.grid--bottom`). Extends `.grid`.
+    .grid--middle > .grid__item {
+        vertical-align: middle;
+    }
+
+    .grid--bottom > .grid__item {
+        vertical-align: bottom;
+    }
+
+    // Create grids with narrower gutters. Extends `.grid`.
+    @include legacy-gutter-variants(
+        $variant: 'narrow',
+        $newGutter: (
+            $gutter / 2
+        )
+    );
+    @each $name, $val in $grid-breakpoints {
+        @if type-of($val) == 'map' {
+            @media #{query(map-get($val, 'query'), 'max')} {
+                @include legacy-gutter-variants(
+                    $namespace: 'lt-#{$name}--',
+                    $variant: 'narrow',
+                    $newGutter: (
+                        $gutter / 2
+                    )
+                );
+            }
+        } @else {
+            @media #{query($val, 'max')} {
+                @include legacy-gutter-variants(
+                    $namespace: 'lt-#{$name}--',
+                    $variant: 'narrow',
+                    $newGutter: (
+                        $gutter / 2
+                    )
+                );
+            }
+        }
+    }
+
+    // Create grids with wider gutters. Extends `.grid`.
+    @include legacy-gutter-variants(
+        $variant: 'wide',
+        $newGutter: (
+            $gutter * 2
+        )
+    );
+    @each $name, $val in $grid-breakpoints {
+        @if type-of($val) == 'map' {
+            @media #{query(map-get($val, 'query'))} {
+                @include legacy-gutter-variants(
+                    $namespace: '#{$name}--',
+                    $variant: 'wide',
+                    $newGutter: (
+                        $gutter * 2
+                    )
+                );
+            }
+        } @else {
+            @media #{query($val)} {
+                @include legacy-gutter-variants(
+                    $namespace: '#{$name}--',
+                    $variant: 'wide',
+                    $newGutter: (
+                        $gutter * 2
+                    )
+                );
+            }
+        }
+    }
+
+    // Our regular, non-responsive width classes.
+    @if $cols > 1 {
+        // we only write out the column classes if we have more than one column - otherwise the base element styles are the same
+        @include legacy-widths;
+    }
+
+    // Our responsive classes.
+    @each $name, $val in $grid-breakpoints {
+        @if type-of($val) == 'map' {
+            @if map-get($val, 'cols') > 1 {
+                // we only write out the responsive classes if we have more than one column at this breakpoint
+                @media #{query(map-get($val, 'query'))} {
+                    @include legacy-widths($namespace: '#{$name}--', $columns: map-get($val, 'cols'));
+                }
+            }
+        } @else {
+            @if $cols > 1 {
+                // we only write out the responsive classes if we have more than one column
+                @media #{query($val)} {
+                    @include legacy-widths($namespace: '#{$name}--');
+                }
+            }
+        }
+    }
+}

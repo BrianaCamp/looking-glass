@@ -1,0 +1,105 @@
+// Fonts
+//
+// The fonts in use on this site. These are available in Sass with a mixin that references the family name — `@include sans-bold`
+//
+// sans - @include sans - "Helvetica Neue", Helvetica, Arial, sans-serif
+// sans-bold - @include sans-bold - "Helvetica Neue", Helvetica, Arial, sans-serif
+// serif - @include serif - Georgia, Cambria, "Times New Roman", Times, serif
+// serif-bold - @include serif-bold - Georgia, Cambria, "Times New Roman", Times, serif
+//
+// Markup:
+// <div class="spsg-font spsg-font--{{modifier_class}} spsg-font--large">A very bad quack might jinx zippy fowls.</div>
+// <div class="spsg-font spsg-font--{{modifier_class}}">A very bad quack might jinx zippy fowls.</div>
+// <div class="spsg-font spsg-font--{{modifier_class}} spsg-font--small">A very bad quack might jinx zippy fowls.</div>
+//
+// Style guide: typography.fonts
+
+// instructions and details
+// --------------------------------------------------------
+//
+// for the styleguide to update properly,
+// font classes need to be setup within styleguide.scss
+//
+// see _1_base/_mixins/_embed-font.scss for details on
+// embedding webfonts.
+//
+// --------------------------------------------------------
+
+$system: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$serif: Georgia, Cambria, Palatino, 'Times New Roman', Times, serif;
+$sans: $system;
+$monospace: 'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace;
+
+// examples of proper loading of 3rd party fonts:
+//
+// @include embed-font('Sans', 'SansWeb-Regular', normal, normal);
+// @include embed-font('Sans', 'SansWeb-RegularItalic', normal, italic);
+// @include embed-font('Sans', 'SansWeb-Bold', bold, normal);
+//
+// then calling those fonts properly:
+//
+// @mixin sans {
+//     font-family: 'Ogilvy Sans', $sans;
+// }
+
+// @mixin sans-italic {
+//     font-family: 'Ogilvy Sans', $sans;
+//     font-style: italic;
+// }
+
+// @mixin sans-bold {
+//     font-family: 'Ogilvy Sans', $sans;
+//     font-weight: bold;
+// }
+
+//
+//   @sans
+// --------------------------------------------------------
+//
+//  use @include sans for this font
+//
+// --------------------------------------------------------
+
+@mixin sans {
+    font-family: $sans;
+    font-weight: normal;
+}
+
+//
+//   @sans-bold
+// --------------------------------------------------------
+//
+//  use @include sans-bold for this font
+//
+// --------------------------------------------------------
+
+@mixin sans-bold {
+    font-family: $sans;
+    font-weight: bold;
+}
+
+//
+//   @serif
+// --------------------------------------------------------
+//
+//  use @include serif for this font
+//
+// --------------------------------------------------------
+
+@mixin serif {
+    font-family: $serif;
+    font-weight: normal;
+}
+
+//
+//   @serif-bold
+// --------------------------------------------------------
+//
+//  use @include serif-bold for this font
+//
+// --------------------------------------------------------
+
+@mixin serif-bold {
+    font-family: $serif;
+    font-weight: bold;
+}
