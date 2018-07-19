@@ -37,7 +37,7 @@
 
     <!-- styles -->
     
-    <link rel="stylesheet" href="/assets/css/screen.css?ts=1531448186">
+    <link rel="stylesheet" href="/assets/css/screen.css?ts=1531981467">
 
     <!-- favicon -->
     <!-- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -67,24 +67,22 @@
 
 <header role="banner">
     <div class="container">
-        <a href="/" class="branding">
-            <!-- .branding__logo here -->
-            
-            <div class="branding__wordmark">Looking Glass</div>
-            
-        </a>
+        <div class="banner__wrapper">
+            <a href="/" class="branding">
+                <!-- .branding__logo here -->
+                
+                <div class="branding__wordmark">Looking Glass</div>
+                
+            </a>
 
-        <input type="checkbox" id="menu-toggle" class="checkbox-toggle js-checkbox-toggle" tabindex="0" data-html-toggle="menu-active"></input>
-        <label for="menu-toggle" class="site-nav__btn burger">
-            <span class="burger__inner"></span>
-            Toggle Main Navigation
-        </label>
-        <nav class="site-nav" role="navigation">
-            <ul class="site-nav__list">
-                <li><a href="/sample/">Item</a></li>
-                <li><a href="/sample2/">Item 2</a></li>
-            </ul>
-        </nav>
+            
+            <nav class="site-nav" role="navigation">
+                <ul class="site-nav__list">
+                    <li><a href="/about/">about</a></li>
+                    <li><a href="/journal/" class="is-active">Journal</a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </header>
 
@@ -94,34 +92,19 @@
     <div class="container">
         <h1 class="page-title">journal</h1>
 
-        
+        <ul>
+
+
+        <li> <a href="/journal/welcome-to-jekyll/">Welcome to Jekyll!</a></li>
+
+
+</ul>
     </div>
 </article>
 
         </main>
 
-        <footer class="site-footer" role="contentinfo">
-    <div class="container">
-        <p class="site-credits">© Looking Glass 2018</p>
-        <ul class="site-footer__primary-nav">
-            <li><a href="/sample/">Item</a></li>
-            <li><a href="/sample2/">Item 2</a></li>
-        </ul>
-        <ul class="social-nav">
-            
-            
-            <li><a target="_blank" href="https://www.facebook.com/jekyllrb"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" class="social-nav__icon"><title>Facebook</title><path d="M70 0C31.34 0 0 31.34 0 70s31.34 70 70 70 70-31.34 70-70S108.66 0 70 0zm21 44H80.49c-6 0-6.49 2.8-6.49 7v9h13.65l-1.87 14H74v37H62V74H48V60h14V49.56c0-12.38 7.18-19.13 18.22-19.13 5.29 0 6.78.39 10.78.57v13z"/></svg></a></li>
-            
-            
-            <li><a target="_blank" href="https://twitter.com/jekyllrb"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" class="social-nav__icon"><title>Twitter</title><path d="M70 0C31.34 0 0 31.34 0 70s31.34 70 70 70 70-31.34 70-70S108.66 0 70 0zm34.2 58v2c0 20.6-15.67 44.33-44.34 44.33-8.47 0-16.76-2.42-23.88-7 8.24.98 16.53-1.34 23.07-6.45-6.67-.12-12.52-4.47-14.56-10.82.96.18 1.94.28 2.92.28 1.42 0 2.83-.18 4.2-.55-7.22-1.5-12.4-7.88-12.37-15.26v-.2c2.14 1.23 4.54 1.9 7 1.96-4.36-2.9-7-7.77-7-13 0-2.75.7-5.46 2.1-7.84 7.9 9.74 19.56 15.66 32.1 16.3-.28-1.18-.42-2.37-.42-3.57 0-6.4 3.9-12.16 9.87-14.5 5.95-2.35 12.73-.82 17.1 3.86 3.5-.7 6.84-1.97 9.9-3.8-1.17 3.63-3.63 6.7-6.9 8.64 3.1-.36 6.14-1.2 9-2.46-2.1 3.13-4.74 5.86-7.8 8.06z"/></svg></a></li>
-            
-            
-            <li><a target="_blank" href="https://instagram.com/jekyllrb/"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 140" class="social-nav__icon"><title>Instagram</title><path d="M70 56.5c-7.4 0-13.5 6-13.5 13.5s6 13.5 13.5 13.5c7.4 0 13.5-6 13.5-13.5s-6-13.5-13.5-13.5z"/><path d="M70 0C31.3 0 0 31.3 0 70s31.3 70 70 70 70-31.3 70-70S108.7 0 70 0zm22 106c-1.8.6-4 1-6 1H54c-10.4 0-19.6-8.6-21-18.8v-3.5-29.5c-.3-11.4 8.3-21 19.7-22.2H85c5.8-.2 11.6 2 15.8 6.2 4.2 4.2 6.4 10 6.3 16v29.6c.2 9.6-5.8 18-15 21z"/><path d="M100 51.8c-1.4-7.2-7.8-12.3-15-12H55c-1 0-2 0-3.2.2-7 1.4-12.2 7.7-12 15-.2 10 0 20 0 30 0 1.2 0 2.2.2 3.2 1.4 7.2 7.7 12.2 15 12h29.6c1.2 0 2.4 0 3.6-.2 7-1.4 12.2-7.6 12-15 .2-10 0-20 0-30.2 0-1 0-2-.2-3zM70 90.2c-11.3 0-20.3-9-20.2-20.3 0-11.2 9-20.3 20.2-20.2 11.2 0 20.2 9 20.2 20.2 0 5.4-2 10.5-6 14.3-3.8 3.8-9 6-14.3 6zm20-37c-1.7 0-3-1.5-3-3 0-1.8 1.4-3 3-3s3 1.2 3 3c0 .7-.3 1.5-1 2-.5.6-1.3 1-2 1z"/></svg></a></li>
-            
-        </ul>
-    </div>
-</footer>
-
+        
 
     </body>
 </html>
