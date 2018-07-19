@@ -5,6 +5,20 @@
 // example scss and html code for a skipnav button.
 //
 // --------------------------------------------------------
+.skipnav {
+    background: #000;
+    color: #FFF;
+    left: 32px;
+    opacity: 0;
+    padding: 0.35em 1em;
+    position: fixed;
+    text-decoration: none;
+    top: 0;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out, opacity 0s linear 0.3s;
+    width: auto;
+    z-index: 600;
+}
 
 // site-header
 // --------------------------------------------------------
@@ -14,6 +28,14 @@
 // --------------------------------------------------------
 [role='banner'] {
     @include clearfix;
+
+    padding: spacing('xxl') 0;
+    text-transform: uppercase;
+}
+
+[role='banner'] a {
+    letter-spacing: em(1);
+    text-decoration: none;
 }
 
 // branding
@@ -29,6 +51,10 @@
 // --------------------------------------------------------
 .branding {
     float: left;
+}
+
+.branding__wordmark {
+    @include font-size('m');
 }
 
 // .branding__logo {
@@ -51,4 +77,26 @@
 // --------------------------------------------------------
 [role='navigation'] {
     float: right;
+}
+
+.site-nav__list {
+    @include font-size('m');
+
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+.site-nav__list li {
+    margin-left: spacing('m');
+}
+
+// TODO PUT IN FLEX
+.banner__wrapper {
+    align-items: center;
+    border-bottom: $border;
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: rem(5);
 }
