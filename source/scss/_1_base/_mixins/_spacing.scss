@@ -1,0 +1,171 @@
+//
+//   @spacing
+// --------------------------------------------------------
+//  _1_base/_mixins/_spacing.scss
+// --------------------------------------------------------
+//
+//  Shortcut function to grab the map $spacing.
+//
+// --------------------------------------------------------
+
+@function spacing($space, $size: 'base', $spacing-map: $spacing) {
+    @if type-of(map-get($spacing-map, $space)) == 'map' {
+        @return map-get(map-get($spacing-map, $space), $size);
+    } @else {
+        @return map-get($spacing-map, $space);
+    }
+}
+
+//
+//   @spacing
+// ---------------------------------------------------------
+//
+//  Mixin for responsive vertical spacing.
+//
+//  Sizes are defined in the $spacing map of the _vars.scss
+//  file.
+//
+//  Example:
+//
+//  .test {
+//      // Responsive bottom margins
+//      @include spacing('m');
+//
+//      // Padding, just on the bottom
+//      @include spacing('m', 'padding', 'bottom');
+//
+//      // Margin, both sides
+//      @include spacing('m', 'margin', 'both');
+//
+//      // Padding, both sides
+//      @include spacing('m', 'padding');
+//      // or
+//      @include spacing('m', 'padding', 'both');
+//  }
+//
+//  $type can be 'margin' or 'padding'
+//
+//  $direction can be 'bottom', 'top', or 'both' - margin
+//  uses 'bottom' by default and padding uses 'both'
+//
+// ---------------------------------------------------------
+
+@mixin spacing($key, $type: 'margin', $direction: 'default', $sp-map: $spacing) {
+    @if map-has-key($sp-map, $key) {
+        $total-spacings: length($sp-map);
+
+        $current-space: 0;
+        $selected-space-index: $total-spacings;
+        $large-space: null;
+        $medium-space: null;
+        $small-space: null;
+
+        // define map indexes and space values
+        @each $space, $space-val in $sp-map {
+            $current-space: $current-space + 1;
+
+            @if $space == $key {
+                $selected-space-index: $current-space;
+                $large-space: $space-val;
+            } @else if $current-space == $selected-space-index + 1 {
+                $medium-space: $space-val;
+            } @else if $current-space == $selected-space-index + 2 {
+                $small-space: $space-val;
+            }
+        }
+
+        // write styles
+
+        // smallest
+        @if $total-spacings - $selected-space-index > 2 {
+            @include make-spacing($small-space, $type, $direction);
+        }
+
+        // medium
+        @if $total-spacings - $selected-space-index > 2 {
+            @media #{query('s')} {
+                @include make-spacing($medium-space, $type, $direction);
+            }
+        } @else if $medium-space != null {
+            @include make-spacing($medium-space, $type, $direction);
+        }
+
+        // large
+        @if $total-spacings - $selected-space-index > 2 {
+            @media #{query('m')} {
+                @include make-spacing($large-space, $type, $direction);
+            }
+        } @else if $total-spacings - $selected-space-index > 0 {
+            @media #{query('s')} {
+                @include make-spacing($large-space, $type, $direction);
+            }
+        } @else if $large-space != null {
+            @include make-spacing($large-space, $type, $direction);
+        }
+    } @else {
+        @warn 'Unknown `#{$key}` in #{sp-map}.';
+    }
+}
+
+//
+//   @horizontal-spacing
+// ---------------------------------------------------------
+//
+//  Mixin for horizontal spacing.
+//
+//  Sizes are defined in the $spacing map of the _vars.scss
+//  file.
+//
+//  Example:
+//
+//  .test {
+//      @include horizontal-spacing('m');
+//
+//      // Padding
+//      @include horizontal-spacing('m', 'padding');
+//  }
+//
+//  $type can be 'margin' or 'padding'
+//
+// ---------------------------------------------------------
+
+@mixin horizontal-spacing($key, $type: 'margin', $sp-map: $spacing) {
+    $direction: 'horizontal';
+    $space: spacing($key);
+
+    @if map-has-key($sp-map, $key) {
+        // write styles
+        @include make-spacing($space, $type, $direction);
+    } @else {
+        @warn 'Unknown `#{$key}` in #{sp-map}.';
+    }
+}
+
+// Utility function for spacing mixins
+@mixin make-spacing($size, $type, $direction) {
+    @if $type == margin {
+        @if $direction == horizontal {
+            margin-left: $size;
+            margin-right: $size;
+        } @else {
+            @if $direction == default or $direction == bottom or $direction == both {
+                margin-bottom: $size;
+            }
+            @if $direction == top or $direction == both {
+                margin-top: $size;
+            }
+        }
+    } @else if $type == padding {
+        @if $direction == horizontal {
+            padding-left: $size;
+            padding-right: $size;
+        } @else {
+            @if $direction == bottom or $direction == both or $direction == default {
+                padding-bottom: $size;
+            }
+            @if $direction == top or $direction == both or $direction == default {
+                padding-top: $size;
+            }
+        }
+    }
+}

@@ -1,0 +1,269 @@
+// Quantity Queries
+//
+// Use these mixins to create styles that will only apply
+// when specific numbers of elements are present.
+//
+// Credit Daniel Guillan - https://github.com/danielguillan
+//
+// See http://alistapart.com/article/quantity-queries-for-css
+// for more information.
+//
+// See https://github.com/danielguillan/quantity-queries for
+// usage of this mixin.
+//
+// ```
+// ul > li {
+//     // Color the `li` items red when there are 6 items or more
+//     @include at-least(6) {
+//         color: red;
+//     }
+//
+//     // Color the `li` items blue when there are 4 items or less
+//     @include at-most(4) {
+//         color: blue;
+//     }
+//
+//     // Add a green background to `li` items when there are between 5 and 8 items
+//     @include between(5, 8) {
+//         background-color: green;
+//     }
+//
+//     // Add a shadow to `li` items when there are exactly 8 items
+//     @include exactly(8) {
+//         box-shadow: 0 1px 3px #000;
+//     }
+// }
+// ```
+//
+// The quantity query mixins assume you want to use the current
+// last simple selector for all the items by default (li in the
+// above example). If you need a different selector or want the
+// quantity query to be selector agnostic pass the desired
+// selector to the mixin.
+//
+// Example:
+//
+// ```
+// nav div {
+//     @include at-least(4, '*') { ... }; // selector agnostic (universal selector)
+//     @include between(4, 8, 'span') { ... }; // use span instead of div
+// }
+// ```
+//
+// Style guide: mixins.quantity-queries
+
+// Table of contents:
+// 1. Last Simple Selector
+// 2. Build Quantity Selector
+// 3. At least
+// 4. At most
+// 5. Between
+// 6. Exactly
+
+// 1. Last Simple Selector
+
+// Find the last simple selector in a given selector
+// @access private
+// @param  {list | string} $selector - A single selector
+// @return {string}                  - The last simple selector in $selector
+//
+// @example scss
+//   $result: _last-simple-selector(ul > li); // li
+
+@function _last-simple-selector($selector) {
+    $parsed: selector-parse($selector);
+
+    @if length($parsed) > 1 {
+        @error '`#{$selector}` contains #{length($parsed)} selectors and the `_last-simple-selector()`function accepts only 1.';
+    }
+    $last-simple-selector: nth(nth($parsed, 1), -1);
+
+    @return $last-simple-selector;
+}
+
+// 2. Build Quantity Selector
+
+/// Builds the selector for the quantity query
+/// @access private
+/// @param  {string} $selector-append      - The selector to be appended
+/// @param  {string} $last-selector        - The item's selector
+/// @return {list}                         - The final quantity query selector
+
+@function _build-quantity-selector($selector-append, $last-selector) {
+    $quantity-selector: ();
+
+    @each $s in & {
+        $last-simple-selector: '~'+ if($last-selector, $last-selector, _last-simple-selector($s));
+        $sel: selector-append($s, $selector-append);
+        $sel2: selector-nest($sel, $last-simple-selector);
+        $quantity-selector: append($quantity-selector, $sel, 'comma');
+        $quantity-selector: append($quantity-selector, $sel2, 'comma');
+    }
+
+    @return $quantity-selector;
+}
+
+// At Least
+//
+// Query when total items is at least N items
+//
+// ```
+// ul li {
+//  @include at-least(4) { color: red; }
+// }
+// ```
+//
+// ```
+// ul li {
+//  @include at-least(6, '*') { color: blue; }
+// }
+// ```
+//
+// $count - number of elements
+// $selector - null by default (uses last simple selector), but can be set to a specific element if needed
+//
+// Style guide: mixins.quantity-queries.at-least
+
+@mixin at-least($count, $selector: null) {
+    $selector-append: ':nth-last-child(n+#{$count})';
+
+    @if type-of($count) != 'number' or not unitless($count) or $count < 1 {
+        @error '`#{$count}` is not a valid number for `at-least`';
+    }
+
+    @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+        @error '`#{$selector}` is not a valid selector for `at-least`';
+    }
+
+    $at-least-selector: _build-quantity-selector($selector-append, $selector);
+
+    @at-root #{$at-least-selector} {
+        @content;
+    }
+}
+
+// At Most
+//
+// Query when total items is at most N items
+//
+// ```
+// ul li {
+//  @include at-most(4) { color: red; }
+// }
+// ```
+//
+// ```
+// ul li {
+//  @include at-most(6, '*') { color: blue; }
+// }
+// ```
+//
+// $count - number of elements
+// $selector - null by default (uses last simple selector), but can be set to a specific element if needed
+//
+// Style guide: mixins.quantity-queries.at-most
+
+@mixin at-most($count, $selector: null) {
+    $selector-append: ':nth-last-child(-n+#{$count}):first-child';
+
+    @if type-of($count) != 'number' or not unitless($count) or $count < 1 {
+        @error '`#{$count}` is not a valid number for `at-most`.';
+    }
+
+    @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+        @error '`#{$selector}` is not a valid selector for `at-most`';
+    }
+
+    $at-most-selector: _build-quantity-selector($selector-append, $selector);
+
+    @at-root #{$at-most-selector} {
+        @content;
+    }
+}
+
+// Between
+//
+// Query when total items is at least X items and at most Y items
+//
+// ```
+// ul li {
+//  @include between(4, 8) { color: red; }
+// }
+// ```
+//
+// ```
+// ul li {
+//  @include at-most(6, 10, '*') { color: blue; }
+// }
+// ```
+//
+// $first - minimum number of elements
+// $last - maximum number of elements
+// $selector - null by default (uses last simple selector), but can be set to a specific element if needed
+//
+// Style guide: mixins.quantity-queries.between
+
+@mixin between($first, $last, $selector: null) {
+    $selector-append: ':nth-last-child(n+#{$first}):nth-last-child(-n+#{$last}):first-child';
+
+    @if type-of($first) != 'number' or not unitless($first) or $first < 1 {
+        @error '`#{$first}` is not a valid number for `between`';
+    }
+
+    @if type-of($last) != 'number' or not unitless($last) or $last < 1 {
+        @error '`#{$last}` is not a valid number for `between`';
+    }
+
+    @if $first > $last {
+        @error '#{$first} can´t be larger that #{$last} for `between`';
+    }
+
+    @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+        @error '`#{$selector}` is not a valid selector for `between`';
+    }
+
+    $between-selector: _build-quantity-selector($selector-append, $selector);
+
+    @at-root #{$between-selector} {
+        @content;
+    }
+}
+
+// Exactly
+//
+// Query when total items is exactly N items
+//
+// ```
+// ul li {
+//  @include exactly(4) { color: red; }
+// }
+// ```
+//
+// ```
+// ul li {
+//  @include exactly(6, '*') { color: blue; }
+// }
+// ```
+//
+// $count - number of elements
+// $selector - null by default (uses last simple selector), but can be set to a specific element if needed
+//
+// Style guide: mixins.quantity-queries.exactly
+
+@mixin exactly($count, $selector: null) {
+    $selector-append: ':nth-last-child(#{$count}):first-child';
+
+    @if type-of($count) != 'number' or not unitless($count) or $count < 1 {
+        @error '`#{$count}` is not a valid number for `exactly`';
+    }
+
+    @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+        @error '`#{$selector}` is not a valid selector for `exactly`';
+    }
+
+    $exactly-selector: _build-quantity-selector($selector-append, $selector);
+
+    @at-root #{$exactly-selector} {
+        @content;
+    }
+}

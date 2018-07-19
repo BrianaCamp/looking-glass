@@ -1,6 +1,10 @@
+---
+layout: 
+---
+
 User-agent: *
 Disallow: /404/
 Disallow: /500/
 Disallow: /styleguide/
 
-SITEMAP: https://example.com/sitemap.xml
+SITEMAP: {{ site.baseurl | prepend: site.url }}/sitemap.xml

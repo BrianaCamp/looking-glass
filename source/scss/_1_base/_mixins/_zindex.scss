@@ -1,0 +1,17 @@
+//
+//   @zindex
+// --------------------------------------------------------
+//  _1_base/_mixins/_zindex.scss
+// --------------------------------------------------------
+//
+//  Shortcut function to grab the map $zindex.
+//
+// --------------------------------------------------------
+
+@function zindex($z, $sublayer: 'base', $z-map: $zindex) {
+    @if type-of(map-get($z-map, $z)) == 'map' {
+        @return map-get(map-get($z-map, $z), $sublayer);
+    } @else {
+        @return map-get($z-map, $z);
+    }
+}
