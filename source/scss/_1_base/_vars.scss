@@ -309,7 +309,7 @@ $colors: (
     'yellow': #FFDC00,
     'orange': #FF8E1B,
     'red': #FF4136,
-    'fuchsia': #F012BE,
+    'pink': rgb(238, 143, 216),
     'purple': #B10DC9,
     'maroon': #85144B,
     'white': #FFF,
@@ -359,7 +359,7 @@ $success-border: #0CA129;
 //
 // Style guide: sass.borders
 
-$border-color: color('gray');
+$border-color: color('black');
 $border-style: solid;
 $border-width: 1px;
 $border-radius: 3px;
