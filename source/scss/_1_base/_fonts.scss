@@ -32,9 +32,10 @@ $monospace: 'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Sou
 
 // examples of proper loading of 3rd party fonts:
 //
-// @include embed-font('Sans', 'SansWeb-Regular', normal, normal);
-// @include embed-font('Sans', 'SansWeb-RegularItalic', normal, italic);
-// @include embed-font('Sans', 'SansWeb-Bold', bold, normal);
+
+@include embed-font('MaisonNeueMono', 'MaisonNeue-Mono', normal, normal);
+@include embed-font('MaisonNeueMono', 'MaisonNeue-MonoItalic', normal, italic);
+
 //
 // then calling those fonts properly:
 //
@@ -61,7 +62,7 @@ $monospace: 'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Sou
 // --------------------------------------------------------
 
 @mixin sans {
-    font-family: $sans;
+    font-family: MaisonNeueMono, $monospace;
     font-weight: normal;
 }
 
@@ -74,7 +75,7 @@ $monospace: 'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Sou
 // --------------------------------------------------------
 
 @mixin sans-bold {
-    font-family: $sans;
+    font-family: MaisonNeueMono, $monospace;
     font-weight: bold;
 }
 
