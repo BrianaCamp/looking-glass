@@ -1,0 +1,14 @@
+---
+layout: default
+---
+
+<section class="section">
+    <div class="container">
+        <h1>Interviews</h1>
+        <ul>
+            {% for item in site.interviews %}
+                <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
