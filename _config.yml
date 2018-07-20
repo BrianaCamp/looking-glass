@@ -2,6 +2,9 @@
 title: Looking Glass
 timezone: UTC
 collections:
+  interviews:
+    title: Interviews
+    output: true
   posts:
     title: Journal
     output: true
