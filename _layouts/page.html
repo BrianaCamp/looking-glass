@@ -4,7 +4,20 @@ layout: default
 
 <article class="section">
     <div class="container">
-        <h1 class="page-title">{{ page.title }}</h1>
+        <div class="grid medium--grid--2up">
+            <div class="grid__item">
+                <h1 class="page-title">{{ page.title }}</h1>
+                {% unless page.description == nil or page.description == '' %}
+                    <div class="text">
+                        {{ page.description }}
+                    </div>
+                {% endunless %}
+            </div>
+            <div class="grid__item">
+
+            </div>
+        </div>
+
 
         {{ content | markdownify | smartify }}
     </div>
