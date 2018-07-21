@@ -80,6 +80,20 @@ $monospace: 'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Sou
 }
 
 //
+//   @sans-italic
+// --------------------------------------------------------
+//
+//  use @include sans for this font
+//
+// --------------------------------------------------------
+
+@mixin sans-italic {
+    font-family: MaisonNeueMono, $monospace;
+    font-style: italic;
+    font-weight: normal;
+}
+
+//
 //   @serif
 // --------------------------------------------------------
 //

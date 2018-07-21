@@ -1,0 +1,17 @@
+.box-content {
+    border: $border;
+    padding: rem(9);
+}
+
+.box-content__title {
+    @include font-size('xs');
+
+    color: color('black');
+    letter-spacing: 1px;
+    margin-bottom: spacing('m');
+    text-transform: uppercase;
+}
+
+.box-content--no-top {
+    border-top: 0;
+}

@@ -18,7 +18,17 @@
 //
 // --------------------------------------------------------
 .hero {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    justify-content: space-between;
+    min-height: 60vh;
     position: relative;
+
+    @media #{query('m')} {
+        flex-wrap: nowrap;
+    }
 }
 
 .hero .container {
@@ -38,4 +48,43 @@
     top: 0;
     width: 100%;
     z-index: 10;
+}
+
+.hero__img {
+    flex: 1 1 100%;
+    order: 1;
+    position: relative;
+    transform: translateX(-5%);
+
+    @media #{query('m')} {
+        flex: 1 1 40%;
+        order: 0;
+    }
+}
+
+.hero__aside {
+    flex: 1 1 100%;
+    order: 0;
+
+    @media #{query('m')} {
+        flex: 1 1 60%;
+        order: 1;
+    }
+}
+
+.hero__content {
+    margin: 0 auto;
+    max-width: rem(500);
+}
+
+.hero__title {
+    @include font-size('xxl');
+
+    text-transform: uppercase;
+}
+
+.hero__text {
+    @include font-size('s');
+
+    text-transform: uppercase;
 }

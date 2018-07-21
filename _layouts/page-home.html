@@ -3,7 +3,26 @@ layout: default
 ---
 
 <section class="section">
-    <div class="container">
-        {{ content | markdownify | smartify }}
-    </div>
+        <div class="hero">
+            <div class="hero__img">
+                <img src="{{ page.hero_image}}" alt="">
+            </div>
+            <div class="hero__aside">
+                <div class="container">
+                    <div class="hero__content">
+                        <div class="box-content">
+                            <h3 class="box-content__title">project:</h3>
+                            <h2 class="hero__title">{{ page.hero_title }}</h2>
+                        </div>
+
+                        <div class="box-content box-content--no-top">
+                            <h3 class="box-content__title">description:</h3>
+                            <div class="hero__text">
+                                {{ page.hero_text }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 </section>
