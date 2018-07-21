@@ -6,12 +6,10 @@ layout: default
     <div class="container">
         <div class="grid medium--grid--2up">
             <div class="grid__item">
-                <section class="section">
-                    <h1 class="page-title">{{ page.title }}</h1>
-                    <div class="text">
-                        {{ page.about_text | markdownify | smartify }}
-                    </div>
-                </section>
+                <h1 class="page-title">{{ page.title }}</h1>
+                <div class="text">
+                    {{ page.about_text | markdownify | smartify }}
+                </div>
             </div>
             <div class="grid__item">
                 <div class="box-content">
