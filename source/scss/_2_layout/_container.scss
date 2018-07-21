@@ -25,6 +25,11 @@
     padding: 0 rem(32); // adds padding on viewports less than the max-width
 }
 
+.container--medium {
+    margin: 0 auto 0 0;
+    max-width: rem(700);
+}
+
 //
 //   @margin-container
 // --------------------------------------------------------

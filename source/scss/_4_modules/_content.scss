@@ -15,3 +15,15 @@
 .box-content--no-top {
     border-top: 0;
 }
+
+.box-content--no-left {
+    border-left: 0;
+}
+
+.box-content--no-right {
+    border-right: 0;
+}
+
+.box-content__list-item {
+    margin-bottom: spacing('xs');
+}
