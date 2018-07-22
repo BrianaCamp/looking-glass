@@ -27,7 +27,20 @@ layout: default
                 </p>
                 <h2 class="page-title">{{ page.title }}</h2>
 
-                {{ content | markdownify | smartify }}
+                <div class="content">
+                    {{ content | markdownify | smartify }}
+                </div>
+
+                <ul>
+                    {% for item in page.interview %}
+                    <li class="interview">
+                        <p class="interview__title">{{ item.question }}</p>
+                        <div class="text">
+                            {{ item.answer_text }}
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

@@ -1,0 +1,12 @@
+.interview {
+    margin-bottom: rem(100);
+}
+
+.interview__title {
+    @include font-size('l');
+    @include sans-italic;
+
+    border-bottom: $border;
+    margin-bottom: spacing('xl');
+    padding-bottom: rem(9);
+}

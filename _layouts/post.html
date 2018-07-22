@@ -43,16 +43,6 @@ layout: default
 
                 {{ content | markdownify | smartify }}
 
-                <ul>
-                    {% for item in page.interview %}
-                    <li>
-                        <p class="page-title">{{ item.question }}</p>
-                        <div class="page-title">
-                            {{ item.answer_text }}
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
             </div>
         </div>
     </div>
