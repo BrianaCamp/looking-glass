@@ -4,7 +4,32 @@ layout: default
 
 <section class="section">
     <div class="container">
-        {{ content }}
+        <div class="grid grid--interview">
+            <div class="grid__item">
+                <aside>
+                    <div class="box-content">
+                        <p class="box-content__title">
+                        date:
+                        </p>
+                        <p>{{ page.date | date: '%B %d, %Y' }}</p>
+                    </div>
+                    <div class="box-content box-content--no-top">
+                        <p class="box-content__title">
+                        interviewer:
+                        </p>
+                        <p>Liss Lafleur</p>
+                    </div>
+                </aside>
+            </div>
+            <div class="grid__item">
+                <p class="box-content__title">
+                interview with:
+                </p>
+                <h2 class="page-title">{{ page.title }}</h2>
+
+                {{ content | markdownify | smartify }}
+            </div>
+        </div>
     </div>
 </section>
 
