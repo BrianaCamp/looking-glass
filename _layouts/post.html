@@ -4,13 +4,45 @@ layout: default
 
 <article class="section">
     <div class="container">
-        <h1 class="post__title">{{ page.title }}</h1>
-        <p class="post__meta">{{ page.date | date: "%B %e, %Y" }}{% if page.author and page.author != '' %} by {{ page.author }}{% endif %}</p>
+        <div class="grid grid--interview">
+            <div class="grid__item">
+                <aside>
+                    <div class="box-content">
+                        <p class="box-content__title">
+                        date:
+                        </p>
+                        <p>{{ page.date | date: '%B %d, %Y' }}</p>
+                    </div>
+                    <div class="box-content box-content--no-top">
+                        <p class="box-content__title">
+                        author:
+                        </p>
+                        <p>Liss Lafleur</p>
+                    </div>
+                    <div class="box-content box-content--no-top">
+                        <p class="box-content__title">
+                        Tweet:
+                        </p>
+                        <p>This is an example of the daily tweet</p>
+                    </div>
+                    <div class="box-content box-content--no-top">
+                        <p class="box-content__title">
+                        art preview:
+                        </p>
+                        <a href="">
+                            <img src="/assets/img/shard-hero5.jpg" alt="">
+                        </a>
+                    </div>
+                </aside>
+            </div>
+            <div class="grid__item">
+                <p class="box-content__title">
+                title:
+                </p>
+                <h2 class="page-title">{{ page.title }}</h2>
 
-        {{ page.url | prepend: site.baseurl }}
-
-        <div class="post__text text">
-          {{ content | markdownify | smartify }}
+                {{ content | markdownify | smartify }}
+            </div>
         </div>
     </div>
 </article>

@@ -4,9 +4,6 @@
 //
 // Style guide: layout.grid
 
-
-
-
 // ------------------------------------
 //
 //  variables
@@ -22,28 +19,17 @@ $grid-type: 'flex' !default;
 // Set the number of columns.
 $cols: 12 !default;
 
-
 // Set the spacing between your grid items.
 $gutter: 24px !default;
-
 
 // Would you like push and pull classes enabled?
 $push: false !default;
 $pull: false !default;
 
-
 // Define your breakpoints. The first value is the prefix that shall be used for
 // your classes (e.g. `.palm--c-1of2`), the second value is the media query
 // that the breakpoint fires at.
-$grid-breakpoints: (
-    'palm' '(max-width: 480px)',
-    'lap' '(min-width: 481px) and (max-width: 1023px)',
-    'portable' '(max-width: 1023px)',
-    'desk' '(min-width: 1024px)'
-) !default;
-
-
-
+$grid-breakpoints: ('palm' '(max-width: 480px)', 'lap' '(min-width: 481px) and (max-width: 1023px)', 'portable' '(max-width: 1023px)', 'desk' '(min-width: 1024px)') !default;
 
 // ------------------------------------
 //
@@ -53,15 +39,12 @@ $grid-breakpoints: (
 
 // Get the greatest common divisor for a pair of number
 @function gcd($a, $b) {
-  @if $b == 0 {
-    @return $a;
-  } @else {
-    @return gcd($b, $a % $b);
-  }
+    @if $b == 0 {
+        @return $a;
+    } @else {
+        @return gcd($b, $a % $b);
+    }
 }
-
-
-
 
 // ------------------------------------
 //
@@ -72,3 +55,25 @@ $grid-breakpoints: (
 @import '_grids/legacy';
 @import '_grids/flex';
 @import '_grids/modern';
+
+.grid--interview {
+    @media #{query('m')} {
+        flex-wrap: nowrap;
+    }
+}
+
+.grid--interview .grid__item {
+    flex: 1 1 100%;
+
+    @media #{query('m')} {
+        flex: 1 1 66%;
+    }
+}
+
+.grid--interview .grid__item:first-child {
+    flex: 1 1 100%;
+
+    @media #{query('m')} {
+        flex: 1 1 33%;
+    }
+}

@@ -2,10 +2,16 @@
 layout: page
 ---
 
-<ul>
-{% for post in site.journal %}
+<section class="section section--medium">
+    <ul class="grid small--grid--2up large--grid--3up">
+        {% for post in site.journal reversed %}
+            <li class="grid__item">
+                <a class="box-content box-content--journal" href="{{ post.url }}">
+                    <p class="box-content__title">title:</p>
+                    <h3 class="box-content--journal-title">{{ post.title }}</h3>
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</section>
 
-        <li> <a href="{{ post.url }}">{{ post.title }}</a></li>
-
-{% endfor %}
-</ul>

@@ -8,4 +8,12 @@
 //  the site header.
 //
 // --------------------------------------------------------
+.page-title {
+    @include font-size('xxl');
+    @include sans-italic;
 
+    border-bottom: $border;
+    margin-bottom: spacing('xxl');
+    padding-bottom: rem(3);
+    text-transform: uppercase;
+}

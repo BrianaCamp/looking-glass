@@ -1,0 +1,51 @@
+.box-content {
+    border: $border;
+    display: block;
+    padding: rem(9);
+}
+
+.box-content__title {
+    @include font-size('xs');
+
+    color: color('black');
+    letter-spacing: 1px;
+    margin-bottom: spacing('m');
+    text-transform: uppercase;
+}
+
+.box-content--no-top {
+    border-top: 0;
+}
+
+.box-content--no-left {
+    border-left: 0;
+}
+
+.box-content--no-right {
+    border-right: 0;
+}
+
+.box-content__list-item {
+    margin-bottom: spacing('s');
+}
+
+.box-content--journal {
+    min-height: 250px; // arb
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.box-content--journal-title {
+    @include font-size('xxl');
+
+    text-transform: uppercase;
+}
+
+.box-content--journal:hover {
+    background-color: color('black');
+    color: color('white');
+}
+
+.box-content--journal:hover .box-content__title {
+    color: color('white');
+}

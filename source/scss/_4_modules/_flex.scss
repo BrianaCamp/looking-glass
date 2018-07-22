@@ -1,0 +1,8 @@
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex-between--2 > * {
+    flex: 1 1 50%;
+}

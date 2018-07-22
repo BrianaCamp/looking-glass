@@ -190,9 +190,10 @@ $font-sizes: (
     'xxl': (
         'min-font-size': (
             rem(40),
-            1
+            1,
+            -0.5px
         ),
-        'max-font-size': rem(50),
+        'max-font-size': rem(60),
         'lower-font-range': 's',
         'upper-font-range': 'l'
     ),
@@ -245,7 +246,7 @@ $font-sizes: (
 //
 // Style guide: layout.grid.settings
 
-$gutter: spacing('l');
+$gutter: spacing('xxl');
 
 $cols: 1; // base number of columns (smallest screens)
 
