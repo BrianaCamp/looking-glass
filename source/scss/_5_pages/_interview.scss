@@ -1,5 +1,6 @@
 .interview {
     margin-bottom: rem(100);
+    max-width: rem(650);
 }
 
 .interview__title {
@@ -9,4 +10,8 @@
     border-bottom: $border;
     margin-bottom: spacing('xl');
     padding-bottom: rem(9);
+}
+
+.is-pink-mode .interview__title {
+    color: color('white');
 }

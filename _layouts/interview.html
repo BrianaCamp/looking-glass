@@ -1,5 +1,6 @@
 ---
 layout: default
+body_class: is-pink-mode
 ---
 
 <article class="section">
@@ -36,7 +37,7 @@ layout: default
                     <li class="interview">
                         <p class="interview__title">{{ item.question }}</p>
                         <div class="text">
-                            {{ item.answer_text }}
+                            {{ item.answer_text | markdownify | smartify }}
                         </div>
                     </li>
                     {% endfor %}

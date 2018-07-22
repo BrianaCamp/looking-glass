@@ -54,7 +54,7 @@
 }
 
 .branding__wordmark {
-    @include font-size('m');
+    @include font-size('s');
 }
 
 // .branding__logo {
@@ -80,7 +80,7 @@
 }
 
 .site-nav__list {
-    @include font-size('m');
+    @include font-size('s');
 
     align-items: center;
     display: flex;
