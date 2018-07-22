@@ -5,10 +5,10 @@ collections:
   interviews:
     title: Interviews
     output: true
-  posts:
-    title: Journal
-    output: true
   journal:
+    title: Posts
+    output: true
+  posts:
     title: Posts
     output: true
   uploads:
