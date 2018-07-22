@@ -1,0 +1,11 @@
+.is-pink-mode .page-title {
+    color: color('white');
+}
+
+.is-pink-mode {
+    background-color: lighten(color('pink'), 15%);
+}
+
+.is-pink-mode a:hover {
+    color: color('white');
+}
