@@ -11,61 +11,41 @@ layout: default
                     {{ page.about_text | markdownify | smartify }}
                 </div>
             </div>
-            <div class="grid__item">
-                <div class="box-content">
-                    <h3 class="box-content__title">contributors:</h3>
+            {% unless page.contributors == nil or page.contributors == '' %}
+                <div class="grid__item">
+                    <div class="box-content">
+                        <h3 class="box-content__title">contributors:</h3>
+                    </div>
+                    <ul class="box-content__list">
+                        {% for item in page.contributors %}
+                            <li class="box-content__list-item">
+                                <div class="box-content box-content--no-top">
+                                    <p class="box-content__title">{% if forloop.index <=9 %}0{% endif %}{{ forloop.index }}</p>
+                                </div>
+                                <div class="flex-between flex-between--2">
+                                    <div class="box-content box-content--no-top">
+                                        <h4 class="box-content__title">name:</h4>
+                                        <p>{{ item.name }}</p>
+                                    </div>
+                                    <div class="box-content box-content--no-top box-content--no-left">
+                                        <h4 class="box-content__title">portrait:</h4>
+                                        <img src="{{ item.image }}" alt="portrait of {{ item.name }}">
+                                    </div>
+                                </div>
+
+                                <div class="box-content box-content--no-top">
+                                    <h4 class="box-content__title">summary:</h4>
+                                    <div>{{ item.summary_text | markdownify | smartify }}</div>
+                                </div>
+                                <div class="box-content box-content--no-top">
+                                    <h4 class="box-content__title">url:</h4>
+                                    <p><a href="{{ item.url }}">{{ item.url }}</a></p>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <ul class="box-content__list">
-                    <li class="box-content__list-item">
-                        <div class="box-content box-content--no-top">
-                            <p class="box-content__title">01</p>
-                        </div>
-                        <div class="flex-between flex-between--2">
-                            <div class="box-content box-content--no-top">
-                                <h4 class="box-content__title">name:</h4>
-                                <p>Liss Lafluer</p>
-                            </div>
-                            <div class="box-content box-content--no-top box-content--no-left">
-                                <h4 class="box-content__title">portrait:</h4>
-                                <img src="/assets/img/shard-hero3.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <div class="box-content box-content--no-top">
-                            <h4 class="box-content__title">summary:</h4>
-                            <p>Liss Lafluer is a UNT Media Arts professor who is a total badass.</p>
-                        </div>
-                        <div class="box-content box-content--no-top">
-                            <h4 class="box-content__title">url:</h4>
-                            <p><a href="">lisslafluer.com</a></p>
-                        </div>
-                    </li>
-                    <li class="">
-                        <div class="box-content">
-                            <p class="box-content__title">02</p>
-                        </div>
-                        <div class="flex-between flex-between--2">
-                            <div class="box-content box-content--no-top">
-                                <h4 class="box-content__title">name:</h4>
-                                <p>Bri Camp</p>
-                            </div>
-                            <div class="box-content box-content--no-top box-content--no-left">
-                                <h4 class="box-content__title">portrait:</h4>
-                                <img src="/assets/img/shard-hero4.jpg" alt="">
-                            </div>
-                        </div>
-
-                        <div class="box-content box-content--no-top">
-                            <h4 class="box-content__title">summary:</h4>
-                            <p>Bri Camp is a front-end developer and built and designed the site.</p>
-                        </div>
-                        <div class="box-content box-content--no-top">
-                            <h4 class="box-content__title">url:</h4>
-                            <p><a href="">lisslafluer.com</a></p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+            {% endunless %}
         </div>
     </div>
 </section>

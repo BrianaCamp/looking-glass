@@ -49,3 +49,7 @@
 .box-content--journal:hover .box-content__title {
     color: color('white');
 }
+
+.box-content__list li:not(:first-child) {
+    border-top: $border;
+}

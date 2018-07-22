@@ -27,6 +27,17 @@ defaults:
     keywords: ''
 - scope:
     path: ''
+    type: journal
+  values:
+    layout: post
+    permalink: "/journal/:title/"
+    author: ''
+    tweet: ''
+    image: ''
+    description: ''
+    keywords: ''
+- scope:
+    path: ''
     type: pages
   values:
     layout: page
