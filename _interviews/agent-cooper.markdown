@@ -20,4 +20,4 @@ interview:
 layout: interview
 ---
 
-This is my second interview with agent cooper.
+This is my second interview with agent cooper. This field is where I give a brief or long description of the person I am interviewing and why their tweet matters and why I focused on it.
