@@ -10,4 +10,3 @@ layout: page-home
 
 This is your new home page.
 
-<!-- hero_image: "/assets/img/shard-hero3.jpg" -->
