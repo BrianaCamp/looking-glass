@@ -3,6 +3,13 @@ layout: default
 ---
 
 <section class="section">
+    <video controls crossorigin playsinline poster="{{ page.video_image }}" id="player" class="video-home">
+                <!-- Video files -->
+                <source src="{{ page.video_url }}" type="video/mp4" size="576">
+
+                <!-- Fallback for browsers that don't support the <video> element -->
+                <a href="{{ page.video_url }}" download>Download</a>
+        </video>
         <div class="hero">
             <div class="hero__img">
                 <img src="{{ page.hero_image}}" alt="">
@@ -26,3 +33,4 @@ layout: default
             </div>
         </div>
 </section>
+<script src="https://cdn.plyr.io/3.3.22/plyr.js"></script>
