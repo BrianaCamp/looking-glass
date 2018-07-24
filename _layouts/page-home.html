@@ -3,26 +3,35 @@ layout: default
 ---
 
 <section class="section">
-        <div class="hero">
-            <div class="hero__img">
-                <img src="{{ page.hero_image}}" alt="">
-            </div>
-            <div class="hero__aside">
-                <div class="container">
-                    <div class="hero__content">
-                        <div class="box-content">
-                            <h3 class="box-content__title">project:</h3>
-                            <h2 class="hero__title">{{ page.hero_title }}</h2>
-                        </div>
+    <div class="container">
+        <video controls crossorigin playsinline poster="{{ page.hero_video-image }}" id="player" class="video-home">
+            <!-- Video files -->
+            <source src="{{ page.hero_video-file }}" type="video/mp4" size="576">
+        </video>
+    </div>
+</section>
+<section class="section section--flush-top">
+    <div class="hero">
+        <div class="hero__img">
+            <img src="{{ page.hero_image}}" alt="">
+        </div>
+        <div class="hero__aside">
+            <div class="container">
+                <div class="hero__content">
+                    <div class="box-content">
+                        <h3 class="box-content__title">project:</h3>
+                        <h2 class="hero__title">{{ page.hero_title }}</h2>
+                    </div>
 
-                        <div class="box-content box-content--no-top">
-                            <h3 class="box-content__title">summary:</h3>
-                            <div class="hero__text">
-                                {{ page.hero_text }}
-                            </div>
+                    <div class="box-content box-content--no-top">
+                        <h3 class="box-content__title">summary:</h3>
+                        <div class="hero__text">
+                            {{ page.hero_text }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 </section>
+<script src="https://cdn.plyr.io/3.3.22/plyr.js"></script>
