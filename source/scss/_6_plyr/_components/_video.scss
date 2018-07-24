@@ -1,0 +1,22 @@
+// --------------------------------------------------------------
+// Video styles
+// --------------------------------------------------------------
+/* stylelint-disable */
+.plyr--video {
+    overflow: hidden;
+
+    // Menu open
+    &.plyr--menu-open {
+        overflow: visible;
+    }
+}
+
+.plyr__video-wrapper {
+    background: #FFF;
+    border-radius: inherit;
+    overflow: hidden;
+    position: relative;
+
+    // Require z-index to force border-radius
+    z-index: 0;
+}

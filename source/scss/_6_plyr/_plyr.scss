@@ -1,0 +1,47 @@
+// ==========================================================================
+// Plyr styles
+// https://github.com/sampotts/plyr
+// TODO: Review use of BEM classnames
+// ==========================================================================
+@charset 'UTF-8';
+
+@import '_settings/breakpoints';
+@import '_settings/colors';
+@import '_settings/cosmetics';
+@import '_settings/type';
+
+@import '_settings/badges';
+@import '_settings/captions';
+@import '_settings/controls';
+@import '_settings/helpers';
+@import '_settings/menus';
+@import '_settings/progress';
+@import '_settings/sliders';
+@import '_settings/tooltips';
+
+@import '_lib/animation';
+@import '_lib/functions';
+@import '_lib/mixins';
+
+@import 'base';
+
+@import '_components/badges';
+@import '_components/captions';
+@import '_components/control';
+@import '_components/controls';
+@import '_components/embed';
+@import '_components/menus';
+@import '_components/sliders';
+@import '_components/poster';
+@import '_components/times';
+@import '_components/tooltips';
+@import '_components/video';
+@import '_components/progress';
+@import '_components/volume';
+
+@import '_states/fullscreen';
+
+@import '_plugins/ads';
+
+@import '_utils/animation';
+@import '_utils/hidden';
