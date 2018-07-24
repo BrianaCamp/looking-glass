@@ -22,6 +22,9 @@
 <loc>https://example.com/about/</loc>
 </url>
 <url>
+<loc>https://example.com/data/</loc>
+</url>
+<url>
 <loc>https://example.com/</loc>
 </url>
 <url>
@@ -29,5 +32,8 @@
 </url>
 <url>
 <loc>https://example.com/journal/</loc>
+</url>
+<url>
+<loc>https://example.com/windows/</loc>
 </url>
 </urlset>
