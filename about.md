@@ -1,12 +1,23 @@
 ---
 title: About
 permalink: "/about/"
-about_text: This project is the brain child of Liss Lafluer, a new media arts professor
-  at the University of North Texas. The process consisted of going through metoo tweets
-  that were very low level, and some of the most vulnerable. Her students and her
-  created the glass shards in Maya. Then the maya data is parsed through javascript
-  to make 3d enviornments with audio and animation to represent the tone and vulnerability
-  of the tweets, and the authors of the tweets.
+about_text: "*Coded Glass* explores the urgency of the #MeToo movement, the role of
+  social technology, and the ways in which individual narratives can shape the web
+  as a form of community building through the metaphor of glass, a rich art historical
+  material. This project is funded by an Immersive Scholar Residency at the Hunt Library,
+  and the Andrew W. Mellon Foundation.  \n\nThis initiative investigates #MeToo data
+  using a mix of theoretical, artistic, and quantitative methods:\n\n* We share our
+  data about the demographics of people using #MeToo, their sentiments and common
+  themes across the world. (#MeToo/ #BalanceTonPorc / #YoTambien/ #QuellaVoltaChe/
+  ‏وانا_ايضا#)\n* Rich media visualizations as windows that assemble thousands of
+  data points to reveal interesting patterns.\n* Shards that allow you to navigate
+  the whole set of data as subsets of individual narratives.\n* A collection of interviews
+  based on influential to discuss women in technology, intersectional feminism, and
+  #metoo in contemporary culture.\n\n*The title for this work refers to:*\n\nCoded:
+  \ a play on words for coating (traditionally applied to glass), coding (creative
+  computer programming), and morse code (secret emergency signals)\n\nGlass: a space
+  to share narratives and reflect (traditional stained glass), and a two-way mirror
+  (social media and the glass of our digital devices)"
 contributors:
 - name: Liss LaFleur
   image: "/uploads/shard-hero5.jpg"

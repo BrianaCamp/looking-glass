@@ -46,14 +46,15 @@ defaults:
     keywords: ''
     canonical: ''
 url: https://example.com
-description: Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for Google search
-  results) and in your feed.xml site description.
-keywords: 
+description: 'Coded Glass is a new media project that blends art, tweets from the
+  Metoo movement, and morse code.
+
+'
+keywords: 'art, metoo tweets, morse code, '
 email: your-email@example.com
-facebook_username: jekyllrb
-twitter_username: jekyllrb
-instagram_username: jekyllrb
+facebook_username: 
+twitter_username: 
+instagram_username: 
 google_tag_manager_id: 
 test_google_tag_manager_id: 
 cloudinary_cloud_name: 

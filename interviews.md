@@ -1,8 +1,9 @@
 ---
 title: interviews
-description: 'I interview various #metoo particpants about their story, how their
-  tweets moved the metoo movement forward.'
+description: 'A collections of  interviews with significant voices tied to the #metoo
+  movement. Published weekly, we discuss the role of women in technology, intersectional
+  feminism, and contemporary culture.'
 layout: interview-landing
 ---
 
-I interview various #metoo particpants about their story, how their tweets moved the metoo movement forward. This the landing page of interviews. Click around, you might learn something.
+A collections of  interviews with significant voices tied to the #metoo movement. Published weekly, we discuss the role of women in technology, intersectional feminism, and contemporary culture.
