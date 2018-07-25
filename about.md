@@ -29,5 +29,5 @@ contributors:
     Kin</a>. She built and designed the Coded Glass site and architecture. '
   url: https://brianacamp.github.io
 layout: about
+is-nav: true
 ---
-

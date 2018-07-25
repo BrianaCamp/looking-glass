@@ -32,7 +32,6 @@ defaults:
     layout: post
     permalink: "/shards/:title/"
     author: ''
-    tweet: ''
     image: ''
     description: ''
     keywords: ''
@@ -45,6 +44,8 @@ defaults:
     description: ''
     keywords: ''
     canonical: ''
+    is-nav: false
+    main-description: ''
 url: https://example.com
 description: 'Coded Glass is a new media project that blends art, tweets from the
   Metoo movement, and morse code.

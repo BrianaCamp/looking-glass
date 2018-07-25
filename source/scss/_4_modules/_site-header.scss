@@ -54,7 +54,8 @@
 }
 
 .branding__wordmark {
-    @include font-size('s');
+    font-size: rem(24);
+    line-height: 1.3;
 }
 
 // .branding__logo {
@@ -82,21 +83,36 @@
 .site-nav__list {
     @include font-size('s');
 
-    align-items: center;
-    display: flex;
-    justify-content: flex-end;
+    display: block;
     margin: 0;
+    text-align: right;
+
+    @media #{query('m')} {
+        align-items: center;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
 }
 
 .site-nav__list li {
     margin-left: spacing('m');
+    padding-bottom: spacing('s');
+
+    @media #{query('m')} {
+        padding-bottom: 0;
+    }
 }
 
 // TODO PUT IN FLEX
 .banner__wrapper {
-    align-items: center;
-    border-bottom: $border;
+    align-items: flex-start;
     display: flex;
     justify-content: space-between;
     padding-bottom: rem(5);
+
+    @media #{query('m')} {
+        align-items: center;
+        border-bottom: $border;
+    }
 }

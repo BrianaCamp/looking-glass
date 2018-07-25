@@ -7,18 +7,20 @@ layout: default
         <div class="grid medium--grid--2up">
             <div class="grid__item">
                 <h1 class="page-title">{{ page.title }}</h1>
-                {% unless page.description == nil or page.description == '' %}
+                {% unless page.main-description == nil or page.main-description  == '' %}
                     <div class="text">
-                        {{ page.description }}
+                        {{ page.main-description | markdownify | smartify }}
                     </div>
                 {% endunless %}
             </div>
+
             <div class="grid__item">
 
             </div>
+
         </div>
 
+    {{ content | markdownify | smartify }}
 
-        {{ content | markdownify | smartify }}
     </div>
 </article>
