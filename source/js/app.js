@@ -5,4 +5,9 @@
 
 const homeVideo = document.querySelector('.video-home');
 
-new Plyr(homeVideo);
+if (homeVideo) {
+  new Plyr(homeVideo, {
+    autoplay: true,
+    muted: true,
+  });
+}
