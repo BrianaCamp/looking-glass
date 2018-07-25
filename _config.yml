@@ -5,7 +5,7 @@ collections:
   interviews:
     title: Interviews
     output: true
-  journal:
+  shards:
     title: Posts
     output: true
   posts:
@@ -27,10 +27,10 @@ defaults:
     keywords: ''
 - scope:
     path: ''
-    type: journal
+    type: shards
   values:
     layout: post
-    permalink: "/journal/:title/"
+    permalink: "/shards/:title/"
     author: ''
     tweet: ''
     image: ''
