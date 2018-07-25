@@ -5,10 +5,10 @@ collections:
   interviews:
     title: Interviews
     output: true
-  shards:
+  posts:
     title: Posts
     output: true
-  posts:
+  shards:
     title: Posts
     output: true
   uploads:
