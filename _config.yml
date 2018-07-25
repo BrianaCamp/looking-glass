@@ -45,6 +45,7 @@ defaults:
     description: ''
     keywords: ''
     canonical: ''
+    is-nav: true
 url: https://example.com
 description: 'Coded Glass is a new media project that blends art, tweets from the
   Metoo movement, and morse code.
