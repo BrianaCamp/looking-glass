@@ -8,7 +8,7 @@ collections:
   shards:
     title: Shards
     output: true
-  posts:
+  shards:
     title: Posts
     output: true
   uploads:
