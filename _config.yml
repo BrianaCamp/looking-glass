@@ -5,8 +5,8 @@ collections:
   interviews:
     title: Interviews
     output: true
-  shards:
-    title: Shards
+  posts:
+    title: Posts
     output: true
   shards:
     title: Posts
