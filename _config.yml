@@ -32,7 +32,6 @@ defaults:
     layout: post
     permalink: "/shards/:title/"
     author: ''
-    tweet: ''
     image: ''
     description: ''
     keywords: ''
