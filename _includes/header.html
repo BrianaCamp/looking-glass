@@ -19,8 +19,8 @@
             </label> {% endcomment %}
             <nav class="site-nav" role="navigation">
                 <ul class="site-nav__list">
-                    {% comment %} {% assign sorted_pages = site.pages | sort: "position" %} {% endcomment %}
-                    {% for item in site.pages %}
+                    {% assign sorted_pages = site.pages | sort: "position" %}
+                    {% for item in sorted_pages %}
                         {% if item.is-nav == true %}
                             <li><a href="{{ item.url }}"{% if page.url contains "/{{ item.url }}/" %} class="is-active"{% endif %}>{{ item.title }}</a></li>
                         {% endif %}
