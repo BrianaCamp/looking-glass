@@ -10,5 +10,5 @@ general-light-color: "#85dbed"
 audio-file: 
 floor-color: "#cf3bfa"
 directional-light-color: "#ffffff"
+layout: art
 ---
-

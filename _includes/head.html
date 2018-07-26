@@ -71,4 +71,11 @@
     <script src="{{ vendorjs.path | prepend: site.baseurl }}?ts={{ vendorjs.modified_time | date: "%s" }}" defer></script>
     {% assign js = site.static_files | where: 'path', '/assets/js/app.js' | first %}
     <script src="{{ js.path | prepend: site.baseurl }}?ts={{ js.modified_time | date: "%s" }}" defer></script>
+
+    {% if page.url contains 'art' %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/OrbitControls.js"></script>
+        <script src="https://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+        <script src="https://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+    {% endif %}
 </head>
