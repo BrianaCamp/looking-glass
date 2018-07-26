@@ -6,7 +6,7 @@ obj-file: "/uploads/shard-object-test1.obj"
 mtl-file_text: 
 obj-file_text: 
 background-color: "#f0c0fe"
-general-light-color: "#f0c0fe"
+general-light-color: "#FF69B4"
 audio-file: 
 floor-color: "#e495fa"
 directional-light-color: "#ffffff"
