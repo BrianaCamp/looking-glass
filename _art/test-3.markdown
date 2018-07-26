@@ -1,8 +1,8 @@
 ---
 title: Test 3
 date: 2018-07-26 19:52:00 Z
-mtl-file: "/uploads/Glass_shard_1.mtl"
-obj-file: "/uploads/Glass_shard_1.obj"
+mtl-file: "/uploads/shard.mtl"
+obj-file: "/uploads/shard.obj"
 background-color: "#e5d38c"
 general-light-color: "#ff1c1c"
 audio-file: "/uploads/morsecode.mp3"
