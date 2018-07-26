@@ -5,10 +5,10 @@ mtl-file: "/uploads/shard-object-test1.mtl"
 obj-file: "/uploads/shard-object-test1.obj"
 mtl-file_text: 
 obj-file_text: 
-background-color: "#f0c0fe"
+background-color: "#fbcbe3"
 general-light-color: "#FF69B4"
 audio-file: 
-floor-color: "#e495fa"
+floor-color: "#f9a8d0"
 directional-light-color: "#ffffff"
 layout: art
 ---
