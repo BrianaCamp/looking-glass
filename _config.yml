@@ -40,6 +40,19 @@ defaults:
     keywords: ''
 - scope:
     path: ''
+    type: art
+  values:
+    layout: art
+    permalink: "/art/:title/"
+    mtl-file: ''
+    obj-file: ''
+    background-color: ''
+    general-light-color: ''
+    audio-file: ''
+    floor-color: ''
+    directional-light-color: ''
+- scope:
+    path: ''
     type: pages
   values:
     layout: page
