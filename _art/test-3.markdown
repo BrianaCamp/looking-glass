@@ -7,6 +7,6 @@ background-color: "#6349dd"
 general-light-color: "#00fdd9"
 audio-file: "/uploads/morsecode.mp3"
 floor-color: "#bdbdbd"
-directional-light-color: "#ffffff"
+directional-light-color: "#02f2eb"
 ---
 
