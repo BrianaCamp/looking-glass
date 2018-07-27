@@ -6,7 +6,7 @@ obj-file: "/uploads/copy-object-shard1-f40b1c.obj"
 background-color: "#beb0ff"
 general-light-color: "#ea98ff"
 audio-file: "/uploads/morsecode.mp3"
-floor-color: "#bdbdbd"
+floor-color: "#dd6cf9"
 directional-light-color: "#ffffff"
 ---
 
