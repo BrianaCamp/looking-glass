@@ -1,8 +1,8 @@
 ---
 title: Test 3
 date: 2018-07-26 19:52:00 Z
-mtl-file: "/uploads/Glasstest.mtl"
-obj-file: "/uploads/Glasstest.obj"
+mtl-file: "/uploads/test5.mtl"
+obj-file: "/uploads/test5.obj"
 background-color: "#4717f6"
 general-light-color: "#9aa8ee"
 audio-file: "/uploads/morsecode.mp3"
