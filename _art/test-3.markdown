@@ -4,9 +4,9 @@ date: 2018-07-26 19:52:00 Z
 mtl-file: "/uploads/test5.mtl"
 obj-file: "/uploads/test5.obj"
 background-color: "#4717f6"
-general-light-color: "#9aa8ee"
+general-light-color: "#ffffff"
 audio-file: "/uploads/morsecode.mp3"
 floor-color: "#271916"
-directional-light-color: "#eeeeee"
+directional-light-color: "#ffffff"
 ---
 
