@@ -11,7 +11,9 @@
         <main id="main" class="site-main">
             {{ content }}
             <canvas id="art-canvas" class="canvas"></canvas>
-            <audio src="{{ page.audio-file }}" class="art-audio"></audio>
+            {% unless page.audio-file == nil or page.audio-file == '' %}
+                <audio src="{{ page.audio-file }}" class="art-audio"></audio>
+            {% endunless %}
         </main>
 
         {% comment %} {% include footer.html %} {% endcomment %}
