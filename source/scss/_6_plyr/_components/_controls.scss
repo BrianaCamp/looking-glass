@@ -79,10 +79,22 @@
 
 // Audio controls
 .plyr--audio .plyr__controls {
-    background: $plyr-audio-controls-bg;
+    background: transparent;
     border-radius: inherit;
     color: $plyr-audio-control-color;
     padding: $plyr-control-spacing;
+}
+
+.plyr--audio .plyr__volume {
+    display: none;
+}
+
+.plyr--audio .plyr__menu {
+    display: none;
+}
+
+.plyr.plyr--audio {
+    min-width: 30px;
 }
 
 // Hide controls
