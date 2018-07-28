@@ -42,11 +42,18 @@
 }
 
 // Audio styles
+.plyr--audio {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
 .plyr--audio .plyr__control {
     &.plyr__tab-focus,
     &:hover,
     &[aria-expanded='true'] {
         background: $plyr-audio-control-bg-hover;
+        background: transparent;
         color: $plyr-audio-control-color-hover;
     }
 }

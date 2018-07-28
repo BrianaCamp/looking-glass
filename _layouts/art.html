@@ -11,7 +11,7 @@
         <main id="main" class="site-main">
             {{ content }}
             <canvas id="art-canvas" class="canvas"></canvas>
-            <audio src="{{ page.audio-file }}"></audio>
+            <audio src="{{ page.audio-file }}" class="art-audio"></audio>
         </main>
 
         {% comment %} {% include footer.html %} {% endcomment %}
@@ -108,6 +108,7 @@
 
             render();
         </script>
+        <script src="https://cdn.plyr.io/3.3.22/plyr.js"></script>
 
     </body>
 </html>

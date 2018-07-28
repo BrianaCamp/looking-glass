@@ -213,24 +213,24 @@ webpackJsonp([ 0 ], [ function(t, e) {
                 var e = t._subscribers, n = t._state;
                 if (0 !== e.length) {
                     for (var r, o, i = t._result, c = 0; c < e.length; c += 3) r = e[c], o = e[c + n], 
-                    r ? S(n, r, o, i) : o(i);
+                    r ? O(n, r, o, i) : o(i);
                     t._subscribers.length = 0;
                 }
             }
             function C() {
                 this.error = null;
             }
-            function O(t, e) {
+            function S(t, e) {
                 try {
                     return t(e);
                 } catch (t) {
                     return it.error = t, it;
                 }
             }
-            function S(t, e, n, r) {
+            function O(t, e, n, r) {
                 var o, i, c, u, s = a(n);
                 if (s) {
-                    if (o = O(n, r), o === it ? (u = !0, i = o.error, o = null) : c = !0, e === o) return void I(e, y());
+                    if (o = S(n, r), o === it ? (u = !0, i = o.error, o = null) : c = !0, e === o) return void I(e, y());
                 } else o = r, c = !0;
                 e._state !== et || (s && c ? E(e, o) : u ? I(e, i) : t === nt ? k(e, o) : t === rt && I(e, o));
             }
@@ -365,7 +365,7 @@ webpackJsonp([ 0 ], [ function(t, e) {
                     if (r) {
                         var c = arguments[r - 1];
                         H(function() {
-                            S(r, o, c, i);
+                            O(r, o, c, i);
                         });
                     } else j(n, o, t, e);
                     return o;
@@ -529,5 +529,7 @@ webpackJsonp([ 0 ], [ function(t, e) {
         autoplay: !0,
         muted: !0
     });
+    var o = document.querySelector(".art-audio");
+    o && new Plyr(o);
 } ], [ 2 ]);
 //# sourceMappingURL=app.js.map

@@ -11,3 +11,9 @@ if (homeVideo) {
     muted: true,
   });
 }
+
+let artAudio = document.querySelector('.art-audio');
+
+if (artAudio) {
+  new Plyr(artAudio);
+}

@@ -75,6 +75,15 @@
 
 .plyr--audio .plyr__progress__buffer {
     color: $plyr-audio-progress-buffered-bg;
+    display: none;
+}
+
+.plyr--audio .plyr__progress {
+    display: none;
+}
+
+.plyr--audio .plyr__time {
+    display: none;
 }
 
 // Loading state
@@ -92,4 +101,5 @@
 
 .plyr--audio.plyr--loading .plyr__progress__buffer {
     background-color: $plyr-audio-progress-buffered-bg;
+    display: none;
 }
