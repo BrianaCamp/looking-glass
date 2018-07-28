@@ -39,11 +39,21 @@
 
             // FLOOR
             let floorGeo = new THREE.PlaneBufferGeometry(200, 200, 9, 8);
-            let floorMaterial = new THREE.MeshBasicMaterial({ color: 0x{{ page.floor-color | remove: '#' }} });
-            let floor = new THREE.Mesh(floorGeo, floorMaterial);
-            scene.add(floor);
+            //let floorMaterial = new THREE.MeshBasicMaterial({ color: 0x{{ page.floor-color | remove: '#' }} });
+            //let floor = new THREE.Mesh(floorGeo, floorMaterial);
+            let floorMirror = new THREE.Reflector( floorGeo, {
+                clipBias: 0.003,
+                textureWidth: WIDTH * window.devicePixelRatio,
+                textureHeight: HEIGHT * window.devicePixelRatio,
+                color: 0xbcbaba,
+                recursion: 1,
+            });
+            floorMirror.position.y = 0.5;
+            floorMirror.rotateX( - Math.PI / 2 );
+            scene.add(floorMirror);
+            //scene.add(floor);
 
-            floor.rotateX( - Math.PI / 2);
+            //floor.rotateX( - Math.PI / 2);
 
             // LIGHTS
             let ambient = new THREE.AmbientLight( 0x{{ page.general-light-color | remove: '#' }} );
