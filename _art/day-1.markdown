@@ -5,6 +5,7 @@ mtl-file: "/uploads/shard-object-test1.mtl"
 obj-file: "/uploads/shard-object-test1.obj"
 background-color: "#fbcbe3"
 general-light-color: "#FF69B4"
+audio-file: "/uploads/morsecode.mp3"
 floor-color: "#f9a8d0"
 directional-light-color: "#ffffff"
 layout: art
