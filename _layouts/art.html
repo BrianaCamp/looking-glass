@@ -62,9 +62,28 @@
             let ambient = new THREE.AmbientLight( 0x{{ page.general-light-color | remove: '#' }} );
             scene.add( ambient );
 
-            let directionalLight = new THREE.DirectionalLight( 0x{{ page.directional-light-color | remove: '#' }} );
-            directionalLight.position.set( 0, 0, 5 ).normalize();
-            scene.add( directionalLight );
+            //let directionalLight = new THREE.DirectionalLight( 0x{{ page.directional-light-color | remove: '#' }} );
+            //directionalLight.position.set( 0, 0, 5 ).normalize();
+            //scene.add( directionalLight );
+
+            let pointLight1 = new THREE.PointLight(0xffffff);
+            pointLight1.position.set( 150, 10, 0 );
+            pointLight1.castShadow = false;
+            scene.add(pointLight1);
+
+            let pointLight2 = new THREE.PointLight(0xffffff);
+            pointLight2.position.set( -150, 0, 0 );
+            scene.add(pointLight2);
+
+            let pointLight3 = new THREE.PointLight(0xffffff);
+            pointLight3.position.set(0, -10, -150);
+            scene.add( pointLight3 );
+
+            let pointLight4 = new THREE.PointLight(0xffffff);
+            pointLight4.position.set( 0, 0, 150 );
+            scene.add( pointLight4 );
+
+
 
 
             let mtlLoader = new THREE.MTLLoader();
