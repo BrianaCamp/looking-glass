@@ -1,6 +1,7 @@
 ---
 title: About
 permalink: "/about/"
+position: 1
 about_text: "*Coded Glass* explores the urgency of the #MeToo movement, the role of
   social technology, and the ways in which individual narratives can shape the web
   as a form of community building through the metaphor of glass, a rich art historical

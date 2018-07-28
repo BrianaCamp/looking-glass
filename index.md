@@ -1,5 +1,6 @@
 ---
 title: home
+position: 6
 hero_video-file: "/uploads/Introvid_3-83522e.mp4"
 hero_image: "/assets/img/hero-shard6.png"
 hero_title: Coded Glass
