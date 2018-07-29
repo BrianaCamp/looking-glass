@@ -9,5 +9,6 @@ audio-file: "/uploads/morsecode.mp3"
 floor-color: "#f9a8d0"
 directional-light-color: "#ffffff"
 layout: art
+is-gui: true
+is-pointLightHelper: true
 ---
-
