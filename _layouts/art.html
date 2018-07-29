@@ -49,10 +49,25 @@
                 textureHeight: HEIGHT * window.devicePixelRatio,
                 color: 0xbcbaba, // arb
                 recursion: 1,
+                castShadow: true,
+                receiveShadow: true,
             });
+
+            floorMirror.castShadow = true;
+
             floorMirror.position.y = 0.5;
+            floorMirror.position.z = -1;
             floorMirror.rotateX( - Math.PI / 2 );
             scene.add(floorMirror);
+
+            var plane = new THREE.Mesh(
+				new THREE.PlaneBufferGeometry( 10000, 10000 ),
+				new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5, transparent: true } )
+			);
+            plane.position.y = 0.5;
+            plane.position.z = -1;
+            plane.rotateX( - Math.PI / 2 );
+            //scene.add(plane);
             //scene.add(floor);
 
             // floor.rotateX( - Math.PI / 2);
@@ -62,7 +77,7 @@
             let ambient = new THREE.AmbientLight( 0xffffff );
             scene.add( ambient );
 
-            let directionalLight = new THREE.DirectionalLight( 0xff0000, 1, 100 );
+            let directionalLight = new THREE.DirectionalLight( 0x000000, 1, 100 );
             directionalLight.position.set( 1, 1, 1 );
             directionalLight.castShadow = true;
             scene.add( directionalLight );
