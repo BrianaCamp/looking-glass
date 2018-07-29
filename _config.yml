@@ -51,6 +51,8 @@ defaults:
     audio-file: ''
     floor-color: ''
     directional-light-color: ''
+    is-gui: true
+    is-pointLightHelper: false
 - scope:
     path: ''
     type: pages

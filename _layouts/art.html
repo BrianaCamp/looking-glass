@@ -104,15 +104,38 @@
 
             let pointLight2 = new THREE.PointLight(0xffffff);
             pointLight2.position.set( -150, 0, 0 );
+            pointLight2.castShadow = true;
             scene.add(pointLight2);
 
             let pointLight3 = new THREE.PointLight(0xffffff);
             pointLight3.position.set(0, -10, -150);
+            pointLight3.castShadow = true;
             scene.add( pointLight3 );
 
             let pointLight4 = new THREE.PointLight(0xffffff);
             pointLight4.position.set( 0, 0, 150 );
+            pointLight4.castShadow = true;
             scene.add( pointLight4 );
+
+            let isPointLightHelper = {{ page.is-pointLightHelper }};
+            if (isPointLightHelper) {
+                var sphereSize = 4;
+                // POINTLIGHT 1
+                var pointLightHelper1 = new THREE.PointLightHelper( pointLight1, sphereSize, 0xff0000 );
+                scene.add( pointLightHelper1 );
+
+                // POINTLIGHT 2
+                var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize, 0x00ff00 );
+                scene.add( pointLightHelper2 );
+
+                // POINTLIGHT 3
+                var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize, 0x0000ff );
+                scene.add( pointLightHelper3 );
+
+                // POINTLIGHT 4
+                var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize, 0x000000 );
+                scene.add( pointLightHelper4 );
+            }
 
             let objects = [];
 
@@ -238,21 +261,51 @@
             }
             };
 
-            // DAT.GUI Related Stuff
+            ///DAT.GUI Related Stuff
+            let isGui = {{ page.is-gui }}
 
-            var gui = new dat.GUI();
+            if (isGui) {
+                var gui = new dat.GUI();
 
-            var cam = gui.addFolder('Camera');
-            cam.add(camera.position, 'y', 0, 100).listen();
-            cam.add(camera.position, 'x', 0, 100).listen();
-            cam.add(camera.position, 'z', 0, 100).listen();
-            cam.open();
+                var cam = gui.addFolder('Camera');
+                cam.add(camera.position, 'y', 0, 100).listen();
+                cam.add(camera.position, 'x', 0, 100).listen();
+                cam.add(camera.position, 'z', 0, 100).listen();
+                cam.open();
+
+                var light1 = gui.addFolder('Light 1 - RED');
+                light1.add(pointLight1.position, 'y', 0, 500).listen();
+                light1.add(pointLight1.position, 'x', 0, 500).listen();
+                light1.add(pointLight1.position, 'z', 0, 500).listen();
+                light1.open();
+
+                var light2 = gui.addFolder('Light 2 - GREEN');
+                light2.add(pointLight2.position, 'y', 0, 500).listen();
+                light2.add(pointLight2.position, 'x', 0, 500).listen();
+                light2.add(pointLight2.position, 'z', 0, 500).listen();
+                light2.open();
+
+                var light3 = gui.addFolder('Light 3 - BLUE');
+                light3.add(pointLight3.position, 'y', 0, 500).listen();
+                light3.add(pointLight3.position, 'x', 0, 500).listen();
+                light3.add(pointLight3.position, 'z', 0, 500).listen();
+                light3.open();
+
+                var light4 = gui.addFolder('Light 4 - BLACK');
+                light4.add(pointLight3.position, 'y', 0, 500).listen();
+                light4.add(pointLight3.position, 'x', 0, 500).listen();
+                light4.add(pointLight3.position, 'z', 0, 500).listen();
+                light4.open();
 
 
-            gui.add(options, 'stop');
-            gui.add(options, 'reset');
+                gui.add(options, 'stop');
+                gui.add(options, 'reset');
+
+            }
 
             controls.update();
+
+
 
             const render = function() {
                 requestAnimationFrame(render);
