@@ -38,7 +38,6 @@
 
             // RENDERER
             const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: true, alpha: true});
-            renderer.setSize(WIDTH, HEIGHT);
 
             // FLOOR
             let floorGeo = new THREE.PlaneBufferGeometry(200, 200, 9, 8);
@@ -48,55 +47,166 @@
                 clipBias: 0.003,
                 textureWidth: WIDTH * window.devicePixelRatio,
                 textureHeight: HEIGHT * window.devicePixelRatio,
-                color: 0xbcbaba,
+                color: 0xbcbaba, // arb
                 recursion: 1,
+                castShadow: true,
+                receiveShadow: true,
             });
+
+            floorMirror.castShadow = true;
+
             floorMirror.position.y = 0.5;
+            floorMirror.position.z = -1;
             floorMirror.rotateX( - Math.PI / 2 );
             scene.add(floorMirror);
+
+            var plane = new THREE.Mesh(
+				new THREE.PlaneBufferGeometry( 10000, 10000 ),
+				new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5, transparent: true } )
+			);
+            plane.position.y = 0.5;
+            plane.position.z = -1;
+            plane.rotateX( - Math.PI / 2 );
+            //scene.add(plane);
             //scene.add(floor);
 
-            //floor.rotateX( - Math.PI / 2);
+            // floor.rotateX( - Math.PI / 2);
 
             // LIGHTS
-            let ambient = new THREE.AmbientLight( 0x{{ page.general-light-color | remove: '#' }} );
+            //let ambient = new THREE.AmbientLight( 0x{{ page.general-light-color | remove: '#' }} );
+            let ambient = new THREE.AmbientLight( 0xffffff );
             scene.add( ambient );
 
-            let directionalLight = new THREE.DirectionalLight( 0x{{ page.directional-light-color | remove: '#' }} );
-            directionalLight.position.set( 0, 0, 5 ).normalize();
+            let directionalLight = new THREE.DirectionalLight( 0x000000, 1, 100 );
+            directionalLight.position.set( 1, 1, 1 );
+            directionalLight.castShadow = true;
             scene.add( directionalLight );
 
+            //Set up shadow properties for the light
+            directionalLight.shadow.mapSize.width = 1012;  // default
+            directionalLight.shadow.mapSize.height = 1012; // default
+            directionalLight.shadow.camera.near = 0.5;    // default
+            directionalLight.shadow.camera.far = 500;     // default
 
-            let mtlLoader = new THREE.MTLLoader();
-
-            mtlLoader.load('{{ page.mtl-file }}', function(materials) {
-            materials.preload();
+            //var helper = new THREE.CameraHelper( directionalLight.shadow.camera );
+            //scene.add( helper );
 
 
-            let objLoader = new THREE.OBJLoader();
-            objLoader.setMaterials(materials);
+            let pointLight1 = new THREE.PointLight(0xffffff);
+            pointLight1.position.set( 150, 10, 0 );
+            pointLight1.castShadow = true;
+            scene.add(pointLight1);
 
-            objLoader.load('{{ page.obj-file }}', function(object) {
-                scene.add(object);
-                object.position.y = -1;
-                object.rotateY(10.9);
+            let pointLight2 = new THREE.PointLight(0xffffff);
+            pointLight2.position.set( -150, 0, 0 );
+            scene.add(pointLight2);
 
-            },
-            function ( xhr ) {
+            let pointLight3 = new THREE.PointLight(0xffffff);
+            pointLight3.position.set(0, -10, -150);
+            scene.add( pointLight3 );
 
-                    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+            let pointLight4 = new THREE.PointLight(0xffffff);
+            pointLight4.position.set( 0, 0, 150 );
+            scene.add( pointLight4 );
 
-                },
-                // called when loading has errors
-                function ( error ) {
+            let objects = [];
 
-                    console.log( 'An error happened' );
 
-                });
-
+            // MATERIALS
+            let glassBackMaterial = new THREE.MeshPhysicalMaterial({
+                map: null,
+                color: 0x{{ page.background-color | remove:'#' }},
+                metalness: .5,
+                roughness: 0,
+                opacity: 0.5,
+                side: THREE.BackSide,
+                transparent: true,
+                envMapIntensity: 1,
+                reflectivity: 1,
+                premultipliedAlpha: true,
             });
 
-            mtlLoader.setMaterialOptions({side: THREE.BackSide});
+            let glassFrontMaterial = new THREE.MeshPhysicalMaterial({
+                map: null,
+                color: 0x{{ page.background-color | remove:'#' }},
+                metalness: 0.0,
+                roughness: 0,
+                opacity: 0.15,
+                side: THREE.BackSide,
+                transparent: true,
+                envMapIntensity: 5,
+                reflectivity: 1,
+                premultipliedAlpha: true,
+            });
+
+            let manager = new THREE.LoadingManager();
+
+			manager.onProgress = function ( item, loaded, total ) {
+				console.log( item, loaded, total );
+			};
+
+            let loader = new THREE.OBJLoader( manager );
+            loader.load('{{ page.obj-file }}', function( object ) {
+
+                object.traverse( function( child ) {
+                    if ( child instanceof THREE.Mesh ) {
+                        child.material = glassBackMaterial;
+                        let second = child.clone();
+                        second.material = glassFrontMaterial;
+
+                        let parent = new THREE.Group();
+                        parent.add( second );
+                        parent.add( child );
+                        scene.add( parent );
+
+                        objects.push( parent );
+
+                        console.log(parent);
+                    }
+                });
+            });
+
+            renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize(WIDTH, HEIGHT);
+            renderer.shadowMap.enabled = true;
+
+            renderer.gammaInput = true;
+			renderer.gammaOutput = true;
+
+
+
+
+
+            //let mtlLoader = new THREE.MTLLoader();
+
+            //mtlLoader.load('{{ page.mtl-file }}', function(materials) {
+            //materials.preload();
+
+
+            //let objLoader = new THREE.OBJLoader();
+            //objLoader.setMaterials(materials);
+
+            //objLoader.load('{{ page.obj-file }}', function(object) {
+                //scene.add(object);
+                //object.position.y = -1;
+                //object.rotateY(10.9);
+
+            //},
+            //function ( xhr ) {
+
+                    //console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+                //},
+                // called when loading has errors
+                //function ( error ) {
+
+                    //console.log( 'An error happened' );
+
+                //});
+
+            //});
+
+            //mtlLoader.setMaterialOptions({side: THREE.BackSide});
 
             controls.update();
 
