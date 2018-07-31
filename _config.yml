@@ -53,6 +53,9 @@ defaults:
     directional-light-color: ''
     is-gui: true
     is-pointLightHelper: false
+    object_position_x: 0
+    object_position_y: 0
+    object_position_z: 0
 - scope:
     path: ''
     type: pages

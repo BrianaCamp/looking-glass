@@ -22,6 +22,7 @@
             let canvasEl = document.querySelector('.canvas');
             const WIDTH = window.innerWidth;
             const HEIGHT = window.innerHeight;
+            let isObjLoaded = false;
 
             // SCENE
             const scene = new THREE.Scene();
@@ -177,6 +178,7 @@
             loader.load('{{ page.obj-file }}', function( object ) {
                 object.castShadow = true;
                 object.receiveShadow = true;
+                let glassShard = object;
 
                 object.traverse( function( child ) {
                     if ( child instanceof THREE.Mesh ) {
@@ -190,11 +192,24 @@
                         parent.add( child );
                         scene.add( parent );
 
+                        isObjLoaded = true;
+
+
+                        glassShard = parent;
                         objects.push( parent );
 
                     }
                 });
+                isObjLoaded = true;
                 console.log(object.position);
+                if(isObjLoaded && isGui ) {
+                    initGui(glassShard);
+                }
+
+                // position the object based on siteleaf
+                glassShard.position.x = {{ page.object_position_x }};
+                glassShard.position.y = {{ page.object_position_y }};
+                glassShard.position.z = {{ page.object_position_z }};
 
             });
 
@@ -245,13 +260,6 @@
             var options = {
             velx: 0,
             vely: 0,
-            camera: {
-                speed: 0.0001
-            },
-            stop: function() {
-                this.velx = 0;
-                this.vely = 0;
-            },
             reset: function() {
                 this.velx = 0.1;
                 this.vely = 0.1;
@@ -264,7 +272,8 @@
             ///DAT.GUI Related Stuff
             let isGui = {{ page.is-gui }}
 
-            if (isGui) {
+            let initGui = function(glassObject) {
+
                 var gui = new dat.GUI();
 
                 var cam = gui.addFolder('Camera');
@@ -297,10 +306,16 @@
                 light4.add(pointLight3.position, 'z', 0, 500).listen();
                 light4.open();
 
+                var glassShardObject = glassObject;
+                var glassShardGui = gui.addFolder('Glass Object');
+                glassShardGui.add(glassShardObject.position, 'y', -10, 10).listen();
+                glassShardGui.add(glassShardObject.position, 'x', -10, 10).listen();
+                glassShardGui.add(glassShardObject.position, 'z', -10, 10).listen();
+                glassShardGui.open();
 
-                gui.add(options, 'stop');
+
+
                 gui.add(options, 'reset');
-
             }
 
             controls.update();
