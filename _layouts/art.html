@@ -22,7 +22,7 @@
             let canvasEl = document.querySelector('.canvas');
             const WIDTH = window.innerWidth;
             const HEIGHT = window.innerHeight;
-            let objectIsLoaded = false;
+            let isObjLoaded = false;
 
             // SCENE
             const scene = new THREE.Scene();
@@ -57,7 +57,7 @@
                 sound.setBuffer( buffer );
                 sound.setLoop(false);
                 sound.setVolume(0.5);
-                //sound.play();
+                sound.play();
             });
 
             // create an AudioAnalyser, passing in the sound and desired fftSize
@@ -220,6 +220,10 @@
                         parent.add( child );
                         scene.add( parent );
 
+                        isObjLoaded = true;
+
+
+                        glassShard = parent;
                         objects.push( parent );
 
                         glassShard = parent;
@@ -228,58 +232,18 @@
 
                     }
                 });
-                objectIsLoaded = true;
 
-                console.log(glassShard);
-                console.log(objectIsLoaded + 'objectIsLoaded');
-                                ///DAT.GUI Related Stuff
-                                // TODO: MAKE THIS A FUNCTION AND CALL IT HERE
-                let isGui = {{ page.is-gui }};
-
-                if(objectIsLoaded && isGui) {
-                    var gui = new dat.GUI();
-
-                    var cam = gui.addFolder('Camera');
-                    cam.add(camera.position, 'y', 0, 100).listen();
-                    cam.add(camera.position, 'x', 0, 100).listen();
-                    cam.add(camera.position, 'z', 0, 100).listen();
-                    cam.open();
-
-                    var light1 = gui.addFolder('Light 1 - RED');
-                    light1.add(pointLight1.position, 'y', 0, 500).listen();
-                    light1.add(pointLight1.position, 'x', 0, 500).listen();
-                    light1.add(pointLight1.position, 'z', 0, 500).listen();
-                    light1.open();
-
-                    var light2 = gui.addFolder('Light 2 - GREEN');
-                    light2.add(pointLight2.position, 'y', 0, 500).listen();
-                    light2.add(pointLight2.position, 'x', 0, 500).listen();
-                    light2.add(pointLight2.position, 'z', 0, 500).listen();
-                    light2.open();
-
-                    var light3 = gui.addFolder('Light 3 - BLUE');
-                    light3.add(pointLight3.position, 'y', 0, 500).listen();
-                    light3.add(pointLight3.position, 'x', 0, 500).listen();
-                    light3.add(pointLight3.position, 'z', 0, 500).listen();
-                    light3.open();
-
-                    var light4 = gui.addFolder('Light 4 - BLACK');
-                    light4.add(pointLight3.position, 'y', 0, 500).listen();
-                    light4.add(pointLight3.position, 'x', 0, 500).listen();
-                    light4.add(pointLight3.position, 'z', 0, 500).listen();
-                    light4.open();
-
-                    var glassObj = gui.addFolder('glass shard');
-                    glassObj.add(glassShard.position, 'y', -10, 10).listen();
-                    glassObj.add(glassShard.position, 'x', -10, 10).listen();
-                    glassObj.add(glassShard.position, 'z', -10, 10).listen();
-                    glassObj.open();
-
-
-                    //gui.add(options, 'stop');
-                    //gui.add(options, 'reset');
-
+                isObjLoaded = true;
+                console.log(object.position);
+                if(isObjLoaded && isGui ) {
+                    initGui(glassShard);
                 }
+
+                // position the object based on siteleaf
+                glassShard.position.x = {{ page.object_position_x }};
+                glassShard.position.y = {{ page.object_position_y }};
+                glassShard.position.z = {{ page.object_position_z }};
+
             });
 
 
@@ -332,13 +296,6 @@
             var options = {
             velx: 0,
             vely: 0,
-            camera: {
-                speed: 0.0001
-            },
-            stop: function() {
-                this.velx = 0;
-                this.vely = 0;
-            },
             reset: function() {
                 this.velx = 0.1;
                 this.vely = 0.1;
@@ -348,9 +305,36 @@
             }
             };
 
+            ///DAT.GUI Related Stuff
+            let isGui = {{ page.is-gui }}
+
+            let initGui = function(glassObject) {
+
+                var gui = new dat.GUI();
+
+                var light3 = gui.addFolder('Light 3 - BLUE');
+                light3.add(pointLight3.position, 'y', 0, 500).listen();
+                light3.add(pointLight3.position, 'x', 0, 500).listen();
+                light3.add(pointLight3.position, 'z', 0, 500).listen();
+                light3.open();
+
+                var light4 = gui.addFolder('Light 4 - BLACK');
+                light4.add(pointLight3.position, 'y', 0, 500).listen();
+                light4.add(pointLight3.position, 'x', 0, 500).listen();
+                light4.add(pointLight3.position, 'z', 0, 500).listen();
+                light4.open();
+
+                var glassShardObject = glassObject;
+                var glassShardGui = gui.addFolder('Glass Object');
+                glassShardGui.add(glassShardObject.position, 'y', -10, 10).listen();
+                glassShardGui.add(glassShardObject.position, 'x', -10, 10).listen();
+                glassShardGui.add(glassShardObject.position, 'z', -10, 10).listen();
+                glassShardGui.open();
 
 
-            //controls.update();
+
+                gui.add(options, 'reset');
+            }
 
             let analyserFreq = function() {
                 let average = analyser.getAverageFrequency();
@@ -360,15 +344,19 @@
                 }
             };
 
+            //controls.update();
+
+            controls.update();
+
 
 
             const render = function() {
                 requestAnimationFrame(render);
 
-                //analyser.getAverageFrequency();
+                analyser.getAverageFrequency();
 
                 //console.log(analyser.getAverageFrequency());
-                //analyserFreq();
+                analyserFreq();
                 console.log(glassShard);
 
                 controls.update();
