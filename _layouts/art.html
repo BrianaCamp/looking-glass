@@ -12,7 +12,7 @@
             {{ content }}
             <canvas id="art-canvas" class="canvas"></canvas>
             {% unless page.audio-file == nil or page.audio-file == '' %}
-                <audio src="{{ page.audio-file }}" class="art-audio"></audio>
+                <audio src="{{ page.audio-file }}" class="art-audio" id="audio"></audio>
             {% endunless %}
         </main>
 
@@ -22,6 +22,7 @@
             let canvasEl = document.querySelector('.canvas');
             const WIDTH = window.innerWidth;
             const HEIGHT = window.innerHeight;
+            let objectIsLoaded = false;
 
             // SCENE
             const scene = new THREE.Scene();
@@ -41,6 +42,32 @@
             const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: true});
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+
+            // AUDIO VISUALIZER
+            // create an AudioListener and add it to the camera
+            let listener = new THREE.AudioListener();
+            camera.add( listener );
+
+            // create an Audio source
+            let sound = new THREE.Audio( listener );
+
+            // load a sound and set it as the Audio object's buffer
+            let audioLoader = new THREE.AudioLoader();
+            audioLoader.load( '{{ page.audio-file }}', function( buffer ) {
+                sound.setBuffer( buffer );
+                sound.setLoop(false);
+                sound.setVolume(0.5);
+                //sound.play();
+            });
+
+            // create an AudioAnalyser, passing in the sound and desired fftSize
+            let analyser = new THREE.AudioAnalyser( sound, 32 );
+
+            // get the average frequency of the sound
+            //let data = analyser.getFrequencyData();
+
+            let data = analyser;
+            console.table( data );
 
             // FLOOR
             let floorGeo = new THREE.PlaneBufferGeometry(200, 200, 9, 8);
@@ -171,10 +198,13 @@
 
 			manager.onProgress = function ( item, loaded, total ) {
 				console.log( item, loaded, total );
+                objectIsLoaded = true;
 			};
 
             let loader = new THREE.OBJLoader( manager );
+            let glassShard;
             loader.load('{{ page.obj-file }}', function( object ) {
+                glassShard = object;
                 object.castShadow = true;
                 object.receiveShadow = true;
 
@@ -192,11 +222,68 @@
 
                         objects.push( parent );
 
+                        glassShard = parent;
+
+                        objectIsLoaded = true;
+
                     }
                 });
-                console.log(object.position);
+                objectIsLoaded = true;
 
+                console.log(glassShard);
+                console.log(objectIsLoaded + 'objectIsLoaded');
+                                ///DAT.GUI Related Stuff
+                                // TODO: MAKE THIS A FUNCTION AND CALL IT HERE
+                let isGui = {{ page.is-gui }};
+
+                if(objectIsLoaded && isGui) {
+                    var gui = new dat.GUI();
+
+                    var cam = gui.addFolder('Camera');
+                    cam.add(camera.position, 'y', 0, 100).listen();
+                    cam.add(camera.position, 'x', 0, 100).listen();
+                    cam.add(camera.position, 'z', 0, 100).listen();
+                    cam.open();
+
+                    var light1 = gui.addFolder('Light 1 - RED');
+                    light1.add(pointLight1.position, 'y', 0, 500).listen();
+                    light1.add(pointLight1.position, 'x', 0, 500).listen();
+                    light1.add(pointLight1.position, 'z', 0, 500).listen();
+                    light1.open();
+
+                    var light2 = gui.addFolder('Light 2 - GREEN');
+                    light2.add(pointLight2.position, 'y', 0, 500).listen();
+                    light2.add(pointLight2.position, 'x', 0, 500).listen();
+                    light2.add(pointLight2.position, 'z', 0, 500).listen();
+                    light2.open();
+
+                    var light3 = gui.addFolder('Light 3 - BLUE');
+                    light3.add(pointLight3.position, 'y', 0, 500).listen();
+                    light3.add(pointLight3.position, 'x', 0, 500).listen();
+                    light3.add(pointLight3.position, 'z', 0, 500).listen();
+                    light3.open();
+
+                    var light4 = gui.addFolder('Light 4 - BLACK');
+                    light4.add(pointLight3.position, 'y', 0, 500).listen();
+                    light4.add(pointLight3.position, 'x', 0, 500).listen();
+                    light4.add(pointLight3.position, 'z', 0, 500).listen();
+                    light4.open();
+
+                    var glassObj = gui.addFolder('glass shard');
+                    glassObj.add(glassShard.position, 'y', -10, 10).listen();
+                    glassObj.add(glassShard.position, 'x', -10, 10).listen();
+                    glassObj.add(glassShard.position, 'z', -10, 10).listen();
+                    glassObj.open();
+
+
+                    //gui.add(options, 'stop');
+                    //gui.add(options, 'reset');
+
+                }
             });
+
+
+
 
 
             renderer.setPixelRatio( window.devicePixelRatio );
@@ -261,59 +348,35 @@
             }
             };
 
-            ///DAT.GUI Related Stuff
-            let isGui = {{ page.is-gui }}
-
-            if (isGui) {
-                var gui = new dat.GUI();
-
-                var cam = gui.addFolder('Camera');
-                cam.add(camera.position, 'y', 0, 100).listen();
-                cam.add(camera.position, 'x', 0, 100).listen();
-                cam.add(camera.position, 'z', 0, 100).listen();
-                cam.open();
-
-                var light1 = gui.addFolder('Light 1 - RED');
-                light1.add(pointLight1.position, 'y', 0, 500).listen();
-                light1.add(pointLight1.position, 'x', 0, 500).listen();
-                light1.add(pointLight1.position, 'z', 0, 500).listen();
-                light1.open();
-
-                var light2 = gui.addFolder('Light 2 - GREEN');
-                light2.add(pointLight2.position, 'y', 0, 500).listen();
-                light2.add(pointLight2.position, 'x', 0, 500).listen();
-                light2.add(pointLight2.position, 'z', 0, 500).listen();
-                light2.open();
-
-                var light3 = gui.addFolder('Light 3 - BLUE');
-                light3.add(pointLight3.position, 'y', 0, 500).listen();
-                light3.add(pointLight3.position, 'x', 0, 500).listen();
-                light3.add(pointLight3.position, 'z', 0, 500).listen();
-                light3.open();
-
-                var light4 = gui.addFolder('Light 4 - BLACK');
-                light4.add(pointLight3.position, 'y', 0, 500).listen();
-                light4.add(pointLight3.position, 'x', 0, 500).listen();
-                light4.add(pointLight3.position, 'z', 0, 500).listen();
-                light4.open();
 
 
-                gui.add(options, 'stop');
-                gui.add(options, 'reset');
+            //controls.update();
 
-            }
+            let analyserFreq = function() {
+                let average = analyser.getAverageFrequency();
 
-            controls.update();
+                if( average > 0 ) {
+                    glassShard.rotation.y += 1;
+                }
+            };
 
 
 
             const render = function() {
                 requestAnimationFrame(render);
 
+                //analyser.getAverageFrequency();
+
+                //console.log(analyser.getAverageFrequency());
+                //analyserFreq();
+                console.log(glassShard);
+
                 controls.update();
 
                 renderer.render(scene, camera);
             };
+
+
 
             render();
         </script>
