@@ -61,7 +61,7 @@
             });
 
             // create an AudioAnalyser, passing in the sound and desired fftSize
-            let analyser = new THREE.AudioAnalyser( sound, 32 );
+            let analyser = new THREE.AudioAnalyser( sound, 64 );
 
             // get the average frequency of the sound
             //let data = analyser.getFrequencyData();
@@ -234,7 +234,7 @@
                 });
 
                 isObjLoaded = true;
-                console.log(object.position);
+
                 if(isObjLoaded && isGui ) {
                     initGui(glassShard);
                 }
@@ -336,11 +336,22 @@
                 gui.add(options, 'reset');
             }
 
+
             let analyserFreq = function() {
                 let average = analyser.getAverageFrequency();
 
-                if( average > 0 ) {
-                    glassShard.rotation.y += 1;
+                if( average > 40 ) {
+                    glassShard.position.y += .77;
+
+                    setTimeout(resetAnimation, 100);
+                }
+
+
+            };
+
+            let resetAnimation = function() {
+                if(glassShard) {
+                    glassShard.position.y = 0;
                 }
             };
 
@@ -355,9 +366,9 @@
 
                 analyser.getAverageFrequency();
 
-                //console.log(analyser.getAverageFrequency());
+                console.log(analyser.getAverageFrequency());
+
                 analyserFreq();
-                console.log(glassShard);
 
                 controls.update();
 
