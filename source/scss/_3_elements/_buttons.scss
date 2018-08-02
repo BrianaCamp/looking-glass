@@ -18,20 +18,19 @@
 // Markup: ../kss/templates/button.hbs
 //
 // Style guide: elements.buttons
-
 button,
 [role='button'],
 .btn {
     @include font-size('l');
 
-    background-color: $text-color;
+    background-color: transparent;
     border: 0;
     border-radius: $border-radius;
-    color: $body-color;
+    color: color('gray', 'dark');
     cursor: pointer;
     display: inline-block;
     outline: none;
-    padding: 1em 3em;
+    padding: 5px;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -63,7 +62,6 @@ button:focus,
 //  <a class="btn btn--large">Large button</a>
 //
 // --------------------------------------------------------
-
 button.m--large,
 [role='button'].m--large,
 .btn.m--large {
@@ -81,7 +79,6 @@ button.m--large,
 //  <p>Here's some text <a role="button" class="m--inline">Cool button</a> text keeps going</p>
 //
 // --------------------------------------------------------
-
 button.m--inline,
 [role='button'].m--inline,
 .btn.m--inline {
@@ -102,7 +99,6 @@ button.m--inline,
 //  <a href="#" role="button" class="m--block">Block button</a>
 //
 // --------------------------------------------------------
-
 button.m--block,
 [role='button'].m--block,
 .btn.m--block {

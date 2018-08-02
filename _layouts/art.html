@@ -12,7 +12,20 @@
             {{ content }}
             <canvas id="art-canvas" class="canvas"></canvas>
             {% unless page.audio-file == nil or page.audio-file == '' %}
-                <audio src="{{ page.audio-file }}" class="art-audio"></audio>
+
+               <div class="art-audio">
+                    <button class="art-audio__play">
+                        <svg id="art-audio__play-icon" viewBox="0 0 18 18" width="100%" height="100%">
+                            <path d="M15.562 8.1L3.87.225C3.052-.337 2 .225 2 1.125v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z"></path>
+                        </svg>
+                    </button>
+                    <button class="art-audio__pause">
+                        <svg class="art-audio__pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M224 435.8V76.1c0-6.7-5.4-12.1-12.2-12.1h-71.6c-6.8 0-12.2 5.4-12.2 12.1v359.7c0 6.7 5.4 12.2 12.2 12.2h71.6c6.8 0 12.2-5.4 12.2-12.2z"/>
+                            <path d="M371.8 64h-71.6c-6.7 0-12.2 5.4-12.2 12.1v359.7c0 6.7 5.4 12.2 12.2 12.2h71.6c6.7 0 12.2-5.4 12.2-12.2V76.1c0-6.7-5.4-12.1-12.2-12.1z"/>
+                        </svg>
+                    </button>
+                </div>
             {% endunless %}
         </main>
 
@@ -23,6 +36,11 @@
             const WIDTH = window.innerWidth;
             const HEIGHT = window.innerHeight;
             let isObjLoaded = false;
+            let artAudioPlayBtn = document.querySelector('.art-audio__play');
+            let artAudioPauseBtn = document.querySelector('.art-audio__pause');
+            let artAudioBtn = document.querySelector('.art-audio');
+
+
 
             // SCENE
             const scene = new THREE.Scene();
@@ -42,6 +60,58 @@
             const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: true});
             renderer.shadowMap.enabled = true;
             renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+
+            // AUDIO VISUALIZER
+            // create an AudioListener and add it to the camera
+            let listener = new THREE.AudioListener();
+            camera.add( listener );
+
+            // create an Audio source
+            let sound = new THREE.Audio( listener );
+
+            let soundPlaying = false;
+
+            // load a sound and set it as the Audio object's buffer
+            let audioLoader = new THREE.AudioLoader();
+            audioLoader.load( '{{ page.audio-file }}', function( buffer ) {
+
+                sound.setBuffer( buffer );
+                sound.setLoop(true);
+                sound.setVolume(0.5);
+                //sound.play();
+                let playAudio = sound;
+
+                artAudioPlayBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let target = e.target;
+
+                    artAudioBtn.classList.add('is-active');
+
+                    soundPlaying = true;
+                    sound.play();
+                });
+
+                artAudioPauseBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let target = e.target;
+
+                    artAudioBtn.classList.remove('is-active');
+
+
+                    soundPlaying = false;
+                    sound.pause();
+                });
+                //let muteAudio = sound.mute();
+            });
+
+            // create an AudioAnalyser, passing in the sound and desired fftSize
+            let analyser = new THREE.AudioAnalyser( sound, 64 );
+
+            // get the average frequency of the sound
+            //let data = analyser.getFrequencyData();
+
+            //let data = analyser;
+            //console.table( data );
 
             // FLOOR
             let floorGeo = new THREE.PlaneBufferGeometry(200, 200, 9, 8);
@@ -172,13 +242,15 @@
 
 			manager.onProgress = function ( item, loaded, total ) {
 				console.log( item, loaded, total );
+                objectIsLoaded = true;
 			};
 
             let loader = new THREE.OBJLoader( manager );
+            let glassShard;
             loader.load('{{ page.obj-file }}', function( object ) {
+                glassShard = object;
                 object.castShadow = true;
                 object.receiveShadow = true;
-                let glassShard = object;
 
                 object.traverse( function( child ) {
                     if ( child instanceof THREE.Mesh ) {
@@ -198,10 +270,15 @@
                         glassShard = parent;
                         objects.push( parent );
 
+                        glassShard = parent;
+
+                        objectIsLoaded = true;
+
                     }
                 });
+
                 isObjLoaded = true;
-                console.log(object.position);
+
                 if(isObjLoaded && isGui ) {
                     initGui(glassShard);
                 }
@@ -212,6 +289,9 @@
                 glassShard.position.z = {{ page.object_position_z }};
 
             });
+
+
+
 
 
             renderer.setPixelRatio( window.devicePixelRatio );
@@ -276,24 +356,6 @@
 
                 var gui = new dat.GUI();
 
-                var cam = gui.addFolder('Camera');
-                cam.add(camera.position, 'y', 0, 100).listen();
-                cam.add(camera.position, 'x', 0, 100).listen();
-                cam.add(camera.position, 'z', 0, 100).listen();
-                cam.open();
-
-                var light1 = gui.addFolder('Light 1 - RED');
-                light1.add(pointLight1.position, 'y', 0, 500).listen();
-                light1.add(pointLight1.position, 'x', 0, 500).listen();
-                light1.add(pointLight1.position, 'z', 0, 500).listen();
-                light1.open();
-
-                var light2 = gui.addFolder('Light 2 - GREEN');
-                light2.add(pointLight2.position, 'y', 0, 500).listen();
-                light2.add(pointLight2.position, 'x', 0, 500).listen();
-                light2.add(pointLight2.position, 'z', 0, 500).listen();
-                light2.open();
-
                 var light3 = gui.addFolder('Light 3 - BLUE');
                 light3.add(pointLight3.position, 'y', 0, 500).listen();
                 light3.add(pointLight3.position, 'x', 0, 500).listen();
@@ -318,17 +380,47 @@
                 gui.add(options, 'reset');
             }
 
+
+            let analyserFreq = function() {
+                let average = analyser.getAverageFrequency();
+
+                if( average > 40 ) {
+                    glassShard.position.y += .77;
+
+                    setTimeout(resetAnimation, 100);
+                }
+
+
+            };
+
+            let resetAnimation = function() {
+                if(glassShard) {
+                    glassShard.position.y = 0;
+                }
+            };
+
+            //controls.update();
+
             controls.update();
+
+
 
 
 
             const render = function() {
                 requestAnimationFrame(render);
 
+                if(soundPlaying) {
+                    analyserFreq();
+                }
+
+
                 controls.update();
 
                 renderer.render(scene, camera);
             };
+
+
 
             render();
         </script>
