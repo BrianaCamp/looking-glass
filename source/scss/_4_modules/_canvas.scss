@@ -3,3 +3,33 @@
     position: relative;
     width: 100%;
 }
+
+.art-audio {
+    position: absolute;
+    right: 30px;
+    top: 20px;
+}
+
+.art-audio__play,
+.art-audio__pause {
+    display: block;
+}
+
+.art-audio__play > svg,
+.art-audio__pause > svg {
+    display: block;
+    height: 40px;
+    width: 40px;
+}
+
+.is-active .art-audio__play {
+    display: none;
+}
+
+.art-audio .art-audio__pause {
+    display: none;
+}
+
+.is-active .art-audio__pause {
+    display: block;
+}
