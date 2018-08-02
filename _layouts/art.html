@@ -84,9 +84,8 @@
                 artAudioPlayBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     let target = e.target;
-                    console.log(target);
+
                     artAudioBtn.classList.add('is-active');
-                    console.log( playAudio );
 
                     soundPlaying = true;
                     sound.play();
@@ -95,9 +94,9 @@
                 artAudioPauseBtn.addEventListener('click', function(e) {
                     e.preventDefault();
                     let target = e.target;
-                    console.log(target);
+
                     artAudioBtn.classList.remove('is-active');
-                    console.log( playAudio );
+
 
                     soundPlaying = false;
                     sound.pause();
@@ -111,8 +110,8 @@
             // get the average frequency of the sound
             //let data = analyser.getFrequencyData();
 
-            let data = analyser;
-            console.table( data );
+            //let data = analyser;
+            //console.table( data );
 
             // FLOOR
             let floorGeo = new THREE.PlaneBufferGeometry(200, 200, 9, 8);
