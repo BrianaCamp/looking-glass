@@ -110,3 +110,4 @@ exclude:
 - webpack.config.js
 - yarn.lock
 - yarn-error.log
+image: "/uploads/Socialcontent_Image_01%20(1).jpg"
