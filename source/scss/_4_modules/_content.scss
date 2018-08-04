@@ -15,6 +15,7 @@
     letter-spacing: 1px;
     margin-bottom: spacing('m');
     text-transform: uppercase;
+    word-wrap: break-word;
 }
 
 .box-content--no-top {
@@ -56,4 +57,10 @@
 
 .box-content__list li:not(:first-child) {
     border-top: $border;
+}
+
+.box-content__link {
+    @include font-size('s');
+
+    word-wrap: break-word;
 }

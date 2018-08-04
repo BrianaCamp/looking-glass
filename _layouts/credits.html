@@ -1,0 +1,52 @@
+---
+layout: default
+---
+<section class="section">
+    <div class="container">
+        <div class="grid medium--grid--2up">
+            <div class="grid__item">
+                <h1 class="page-title">{{ page.title }}</h1>
+                <div class="text">
+                    {{ page.main-description | markdownify | smartify }}
+                </div>
+            </div>
+        </div>
+</section>
+<section class="section section--flush-top">
+    <div class="container">
+        <div class="grid medium--grid--2up large--grid--3up">
+        {% unless page.contributors == nil or page.contributors == '' %}
+            {% for item in page.contributors %}
+                <div class="grid__item">
+                    <ul class="box-content__list">
+                            <li class="box-content__list-item">
+                                <div class="box-content box-content--top">
+                                    <p class="box-content__title">{% if forloop.index <=9 %}0{% endif %}{{ forloop.index }}</p>
+                                </div>
+                                <div class="flex-between flex-between--2">
+                                    <div class="box-content box-content--no-top">
+                                        <h4 class="box-content__title">name:</h4>
+                                        <p>{{ item.name }}</p>
+                                    </div>
+                                    <div class="box-content box-content--no-top box-content--no-left">
+                                        <h4 class="box-content__title">portrait:</h4>
+                                        <img src="{{ item.image }}" alt="portrait of {{ item.name }}">
+                                    </div>
+                                </div>
+
+                                <div class="box-content box-content--no-top">
+                                    <h4 class="box-content__title">summary:</h4>
+                                    <div>{{ item.summary_text | markdownify | smartify }}</div>
+                                </div>
+                                <div class="box-content box-content--no-top">
+                                    <h4 class="box-content__title">url:</h4>
+                                    <p><a class="box-content__link" href="{{ item.url }}">{{ item.url }}</a></p>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                {% endfor %}
+            {% endunless %}
+        </div>
+    </div>
+</section>
