@@ -32,7 +32,13 @@
     <!-- social -->
     {% if page.title %}<meta property="og:title" content="{{ page.title | escape }}">{% endif %}
     {% unless page.description == nil or page.description == '' %}<meta property="og:description" content="{{ page.description | escape }}">{% endunless %}
-    {% unless page.image == nil or page.image == '' %}<meta property="og:image" content="{{ page.image }}">{% endunless %}
+    {% unless page.image == nil or page.image == '' %}
+        <meta property="og:image" content="{{ page.image }}">
+        {% else %}
+            {% unless site.image == nil or site.image == '' %}
+                <meta property="og:image" content="{{ site.image }}">
+            {% endunless %}
+    {% endunless %}
     {% if page.url %}<meta property="og:url" content="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url }}">{% endif %}
     <meta name="twitter:card" content="summary_large_image">
 
