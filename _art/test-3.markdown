@@ -8,5 +8,6 @@ audio-file: "/uploads/morsecode-504225.mp3"
 floor-color: "#3a2974"
 directional-light-color: "#ffffff"
 is-pointLightHelper: true
+object_position_y: -2
 ---
 
