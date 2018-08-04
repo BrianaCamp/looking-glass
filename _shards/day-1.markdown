@@ -1,5 +1,5 @@
 ---
-title: day 1
+title: Day 1
 date: 2018-07-19 16:45:00 Z
 author: Liss LaFleur
 image: "/uploads/shard-hero5.jpg"
