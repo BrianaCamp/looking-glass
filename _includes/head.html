@@ -75,8 +75,8 @@
         <meta name="twitter:image" content="{{ page.image.url }}" />
         {% else %}
         {% unless site.image == nil or site.image == '' %}
-        <meta property="og:image" content="https:{{ site.image }}">
-        <meta name="twitter:image" content="https:{{ site.image }}" />
+        <meta property="og:image" content="{{ site.image }}">
+        <meta name="twitter:image" content="{{ site.image }}" />
         {% endunless %}
     {% endunless %}
 
