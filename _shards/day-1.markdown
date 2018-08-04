@@ -8,3 +8,5 @@ tweet: This is an example tweet.
 ---
 
 This is day 1 of the residency!!!
+
+To see the finished art piece you can either click on the art preview or you can click [this link](/art/day-1)
