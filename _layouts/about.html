@@ -11,41 +11,6 @@ layout: default
                     {{ page.about_text | markdownify | smartify }}
                 </div>
             </div>
-            {% unless page.contributors == nil or page.contributors == '' %}
-                <div class="grid__item">
-                    <div class="box-content">
-                        <h3 class="box-content__title">contributors:</h3>
-                    </div>
-                    <ul class="box-content__list">
-                        {% for item in page.contributors %}
-                            <li class="box-content__list-item">
-                                <div class="box-content box-content--no-top">
-                                    <p class="box-content__title">{% if forloop.index <=9 %}0{% endif %}{{ forloop.index }}</p>
-                                </div>
-                                <div class="flex-between flex-between--2">
-                                    <div class="box-content box-content--no-top">
-                                        <h4 class="box-content__title">name:</h4>
-                                        <p>{{ item.name }}</p>
-                                    </div>
-                                    <div class="box-content box-content--no-top box-content--no-left">
-                                        <h4 class="box-content__title">portrait:</h4>
-                                        <img src="{{ item.image }}" alt="portrait of {{ item.name }}">
-                                    </div>
-                                </div>
-
-                                <div class="box-content box-content--no-top">
-                                    <h4 class="box-content__title">summary:</h4>
-                                    <div>{{ item.summary_text | markdownify | smartify }}</div>
-                                </div>
-                                <div class="box-content box-content--no-top">
-                                    <h4 class="box-content__title">url:</h4>
-                                    <p><a href="{{ item.url }}">{{ item.url }}</a></p>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-            {% endunless %}
         </div>
     </div>
 </section>
