@@ -2,7 +2,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <title>
+        {% unless page.url == '/' %}
+            {% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}
+            {% else %}
+                {{ site.title }}
+            {% endunless %}
+    </title>
 
     <!-- metadata -->
     {% unless page.description == nil or page.description == '' %}

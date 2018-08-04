@@ -36,6 +36,7 @@ defaults:
     permalink: "/shards/:title/"
     author: ''
     image: ''
+    art_url: ''
     description: ''
     keywords: ''
 - scope:
