@@ -3,4 +3,4 @@ Disallow: /404/
 Disallow: /500/
 Disallow: /styleguide/
 
-SITEMAP: https://codedglass.com/sitemap.xml
+SITEMAP: https://www.codedglass.com/sitemap.xml
