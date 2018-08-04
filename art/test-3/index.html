@@ -1,0 +1,546 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        
+            Test 3 | Coded Glass
+            
+    </title>
+
+    <!-- metadata -->
+    
+        
+        <meta name="description" content="Coded Glass is a new media project that blends art, tweets from the Metoo movement, and morse code.
+">
+        
+    
+    
+        
+        <meta name="keywords" content="art, metoo tweets, morse code, ">
+        
+    
+    
+        
+        <link rel="canonical" href="https://codedglass.com/art/test-3/">
+        
+    
+    
+
+    <!-- social -->
+    
+
+    <!-- social -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type"   content="website" />
+    
+        <meta property="og:title" content="Test 3">
+        <meta name="twitter:title" content="Test 3" />
+        
+    
+        
+            <meta property="og:description" content="Coded Glass is a new media project that blends art, tweets from the Metoo movement, and morse code.
+">
+            <meta name="twitter:description" content="Coded Glass is a new media project that blends art, tweets from the Metoo movement, and morse code.
+" />
+        
+    
+
+    
+        
+        <meta property="og:image" content="/uploads/Socialcontent_Image_01%20(1).jpg">
+        <meta name="twitter:image" content="/uploads/Socialcontent_Image_01%20(1).jpg" />
+        
+    
+
+    
+        <meta property="og:url" content="https://codedglass.com/art/test-3/">
+        <meta name="twitter:site" content="https://codedglass.com/art/test-3/" />
+    
+
+    
+    
+
+    
+
+    <!-- styles -->
+    
+    <link rel="stylesheet" href="/assets/css/screen.css?ts=1533348830">
+
+    <!-- favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="theme-color" content="#ffffff">
+    <!-- site icons go here -->
+
+    <!-- javascript -->
+    <script>var b = document.documentElement; b.className = b.className.replace(/\bno-js\b/,'js'); b.setAttribute('data-useragent', navigator.userAgent); b.setAttribute("data-platform", navigator.platform );</script>
+    
+    <script src="/assets/js/vendor.js?ts=1532578634" defer></script>
+    
+    <script src="/assets/js/app.js?ts=1532814470" defer></script>
+
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/94/three.min.js"></script>
+        <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/53148/OrbitControls.js"></script>
+        <script src="https://threejs.org/examples/js/loaders/OBJLoader.js"></script>
+        <script src="https://threejs.org/examples/js/loaders/MTLLoader.js"></script>
+        <script src=" https://threejs.org/examples//js/objects/Reflector.js"></script>
+    
+</head>
+
+
+
+    <body>
+
+        
+
+
+
+        <main id="main" class="site-main">
+            
+
+            <canvas id="art-canvas" class="canvas"></canvas>
+            
+
+               <div class="art-audio">
+                    <button class="art-audio__play">
+                        <svg id="art-audio__play-icon" viewBox="0 0 18 18" width="100%" height="100%">
+                            <path d="M15.562 8.1L3.87.225C3.052-.337 2 .225 2 1.125v15.75c0 .9 1.052 1.462 1.87.9L15.563 9.9c.584-.45.584-1.35 0-1.8z"></path>
+                        </svg>
+                    </button>
+                    <button class="art-audio__pause">
+                        <svg class="art-audio__pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                            <path d="M224 435.8V76.1c0-6.7-5.4-12.1-12.2-12.1h-71.6c-6.8 0-12.2 5.4-12.2 12.1v359.7c0 6.7 5.4 12.2 12.2 12.2h71.6c6.8 0 12.2-5.4 12.2-12.2z"/>
+                            <path d="M371.8 64h-71.6c-6.7 0-12.2 5.4-12.2 12.1v359.7c0 6.7 5.4 12.2 12.2 12.2h71.6c6.7 0 12.2-5.4 12.2-12.2V76.1c0-6.7-5.4-12.1-12.2-12.1z"/>
+                        </svg>
+                    </button>
+                </div>
+            
+        </main>
+
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.5/dat.gui.min.js"></script>
+        <script type="text/javascript">
+            let canvasEl = document.querySelector('.canvas');
+            const WIDTH = window.innerWidth;
+            const HEIGHT = window.innerHeight;
+            let isObjLoaded = false;
+            let artAudioPlayBtn = document.querySelector('.art-audio__play');
+            let artAudioPauseBtn = document.querySelector('.art-audio__pause');
+            let artAudioBtn = document.querySelector('.art-audio');
+
+
+
+            // SCENE
+            const scene = new THREE.Scene();
+            scene.background = new THREE.Color( 0x3a2974 );
+
+            // CAMERA
+            const camera = new THREE.PerspectiveCamera(75, WIDTH/HEIGHT, .01, 1000);
+            camera.position.z = 6.6;
+            camera.position.y = 2.89;
+            camera.position.x = 1.12;
+
+            // CONTROLS
+            let controls = new THREE.OrbitControls( camera );
+            controls.update();
+
+            // RENDERER
+            const renderer = new THREE.WebGLRenderer({ canvas: canvasEl, antialias: true});
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
+
+            // AUDIO VISUALIZER
+            // create an AudioListener and add it to the camera
+            let listener = new THREE.AudioListener();
+            camera.add( listener );
+
+            // create an Audio source
+            let sound = new THREE.Audio( listener );
+
+            let soundPlaying = false;
+
+            // load a sound and set it as the Audio object's buffer
+            let audioLoader = new THREE.AudioLoader();
+            audioLoader.load( '/uploads/morsecode-504225.mp3', function( buffer ) {
+
+                sound.setBuffer( buffer );
+                sound.setLoop(true);
+                sound.setVolume(0.5);
+                //sound.play();
+                let playAudio = sound;
+
+                artAudioPlayBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let target = e.target;
+
+                    artAudioBtn.classList.add('is-active');
+
+                    soundPlaying = true;
+                    sound.play();
+                });
+
+                artAudioPauseBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    let target = e.target;
+
+                    artAudioBtn.classList.remove('is-active');
+
+
+                    soundPlaying = false;
+                    sound.pause();
+                });
+                //let muteAudio = sound.mute();
+            });
+
+            // create an AudioAnalyser, passing in the sound and desired fftSize
+            let analyser = new THREE.AudioAnalyser( sound, 64 );
+
+            // get the average frequency of the sound
+            //let data = analyser.getFrequencyData();
+
+            //let data = analyser;
+            //console.table( data );
+
+            // FLOOR
+            let floorGeo = new THREE.PlaneBufferGeometry(200, 200, 9, 8);
+            //let floorMaterial = new THREE.MeshBasicMaterial({ color: 0x3a2974 });
+            //let floor = new THREE.Mesh(floorGeo, floorMaterial);
+            let floorMirror = new THREE.Reflector( floorGeo, {
+                clipBias: 0.003,
+                textureWidth: WIDTH * window.devicePixelRatio,
+                textureHeight: HEIGHT * window.devicePixelRatio,
+                color: 0xbcbaba, // arb
+                recursion: 1,
+                castShadow: true,
+                receiveShadow: true,
+            });
+
+            floorMirror.castShadow = true;
+
+            floorMirror.position.y = 0.5;
+            floorMirror.position.z = -1;
+            floorMirror.rotateX( - Math.PI / 2 );
+            scene.add(floorMirror);
+
+            var plane = new THREE.Mesh(
+				new THREE.PlaneBufferGeometry( 10000, 10000 ),
+				new THREE.MeshBasicMaterial( { color: 0xffffff, opacity: 0.5, transparent: true } )
+			);
+            plane.position.y = 0.5;
+            plane.position.z = -1;
+            plane.rotateX( - Math.PI / 2 );
+            //scene.add(plane);
+            //scene.add(floor);
+
+            // floor.rotateX( - Math.PI / 2);
+
+            // LIGHTS
+            //let ambient = new THREE.AmbientLight( 0xffffff );
+            let ambient = new THREE.AmbientLight( 0xffffff );
+            scene.add( ambient );
+
+            let directionalLight = new THREE.DirectionalLight( 0x000000, 1, 100 );
+            directionalLight.position.set( 1, 1, 1 );
+            directionalLight.castShadow = true;
+
+            //Set up shadow properties for the light
+            directionalLight.shadow.mapSize.width = 1012;  // default
+            directionalLight.shadow.mapSize.height = 1012; // default
+            directionalLight.shadow.camera.near = 0.5;    // default
+            directionalLight.shadow.camera.far = 500;     // default
+            directionalLight.shadowDarkness = 1;
+
+            scene.add( directionalLight );
+
+            //var helper = new THREE.CameraHelper( directionalLight.shadow.camera );
+            //scene.add( helper );
+
+
+            let pointLight1 = new THREE.PointLight(0xffffff);
+            pointLight1.position.set( 150, 10, 0 );
+            pointLight1.castShadow = true;
+            scene.add(pointLight1);
+
+            let pointLight2 = new THREE.PointLight(0xffffff);
+            pointLight2.position.set( -150, 0, 0 );
+            pointLight2.castShadow = true;
+            scene.add(pointLight2);
+
+            let pointLight3 = new THREE.PointLight(0xffffff);
+            pointLight3.position.set(0, -10, -150);
+            pointLight3.castShadow = true;
+            scene.add( pointLight3 );
+
+            let pointLight4 = new THREE.PointLight(0xffffff);
+            pointLight4.position.set( 0, 0, 150 );
+            pointLight4.castShadow = true;
+            scene.add( pointLight4 );
+
+            let isPointLightHelper = true;
+            if (isPointLightHelper) {
+                var sphereSize = 4;
+                // POINTLIGHT 1
+                var pointLightHelper1 = new THREE.PointLightHelper( pointLight1, sphereSize, 0xff0000 );
+                scene.add( pointLightHelper1 );
+
+                // POINTLIGHT 2
+                var pointLightHelper2 = new THREE.PointLightHelper( pointLight2, sphereSize, 0x00ff00 );
+                scene.add( pointLightHelper2 );
+
+                // POINTLIGHT 3
+                var pointLightHelper3 = new THREE.PointLightHelper( pointLight3, sphereSize, 0x0000ff );
+                scene.add( pointLightHelper3 );
+
+                // POINTLIGHT 4
+                var pointLightHelper4 = new THREE.PointLightHelper( pointLight4, sphereSize, 0x000000 );
+                scene.add( pointLightHelper4 );
+            }
+
+            let objects = [];
+
+
+            // MATERIALS
+            let glassBackMaterial = new THREE.MeshPhysicalMaterial({
+                map: null,
+                color: 0x3a2974,
+                metalness: .5,
+                roughness: 0,
+                opacity: 0.5,
+                side: THREE.BackSide,
+                transparent: true,
+                envMapIntensity: 1,
+                reflectivity: 1,
+                premultipliedAlpha: true,
+            });
+
+            let glassFrontMaterial = new THREE.MeshPhysicalMaterial({
+                map: null,
+                color: 0x3a2974,
+                metalness: 0.0,
+                roughness: 0,
+                opacity: 0.15,
+                side: THREE.BackSide,
+                transparent: true,
+                envMapIntensity: 5,
+                reflectivity: 1,
+                premultipliedAlpha: true,
+            });
+
+            let manager = new THREE.LoadingManager();
+
+			manager.onProgress = function ( item, loaded, total ) {
+				console.log( item, loaded, total );
+                objectIsLoaded = true;
+			};
+
+            let loader = new THREE.OBJLoader( manager );
+            let glassShard;
+            loader.load('/uploads/Glass_Shard_2.obj', function( object ) {
+                glassShard = object;
+                object.castShadow = true;
+                object.receiveShadow = true;
+
+                object.traverse( function( child ) {
+                    if ( child instanceof THREE.Mesh ) {
+                        child.material = glassBackMaterial;
+                        child.castShadow = true;
+                        let second = child.clone();
+                        second.material = glassFrontMaterial;
+
+                        let parent = new THREE.Group();
+                        parent.add( second );
+                        parent.add( child );
+                        scene.add( parent );
+
+                        isObjLoaded = true;
+
+
+                        glassShard = parent;
+                        objects.push( parent );
+
+                        glassShard = parent;
+
+                        objectIsLoaded = true;
+
+                    }
+                });
+
+                isObjLoaded = true;
+
+                if(isObjLoaded && isGui ) {
+                    initGui(glassShard);
+                }
+
+                // position the object based on siteleaf
+                glassShard.position.x = 0;
+                glassShard.position.y = -2;
+                glassShard.position.z = 0;
+
+            });
+
+
+
+
+
+            renderer.setPixelRatio( window.devicePixelRatio );
+            renderer.setSize(WIDTH, HEIGHT);
+
+            renderer.gammaInput = true;
+			renderer.gammaOutput = true;
+
+
+
+
+
+            //let mtlLoader = new THREE.MTLLoader();
+
+            //mtlLoader.load('', function(materials) {
+            //materials.preload();
+
+
+            //let objLoader = new THREE.OBJLoader();
+            //objLoader.setMaterials(materials);
+
+            //objLoader.load('/uploads/Glass_Shard_2.obj', function(object) {
+                //scene.add(object);
+                //object.position.y = -1;
+                //object.rotateY(10.9);
+
+            //},
+            //function ( xhr ) {
+
+                    //console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+
+                //},
+                // called when loading has errors
+                //function ( error ) {
+
+                    //console.log( 'An error happened' );
+
+                //});
+
+            //});
+
+            //mtlLoader.setMaterialOptions({side: THREE.BackSide});
+
+            // Options to be added to the GUI
+
+            var options = {
+            velx: 0,
+            vely: 0,
+            reset: function() {
+                this.velx = 0.1;
+                this.vely = 0.1;
+                camera.position.z = 75;
+                camera.position.x = 0;
+                camera.position.y = 0;
+            }
+            };
+
+            ///DAT.GUI Related Stuff
+            let isGui = true
+
+            let initGui = function(glassObject) {
+
+                var gui = new dat.GUI();
+
+                var cam = gui.addFolder('Camera');
+                cam.add(camera.position, 'y', 0, 100).listen();
+                cam.add(camera.position, 'x', 0, 100).listen();
+                cam.add(camera.position, 'z', 0, 100).listen();
+                cam.open();
+
+                 var light1 = gui.addFolder('Light 1 - RED');
+                light1.add(pointLight1.position, 'y', 0, 500).listen();
+                light1.add(pointLight1.position, 'x', 0, 500).listen();
+                light1.add(pointLight1.position, 'z', 0, 500).listen();
+                light1.open();
+
+                 var light2 = gui.addFolder('Light 2 - GREEN');
+                light2.add(pointLight2.position, 'y', 0, 500).listen();
+                light2.add(pointLight2.position, 'x', 0, 500).listen();
+                light2.add(pointLight2.position, 'z', 0, 500).listen();
+                light2.open();
+
+                var light3 = gui.addFolder('Light 3 - BLUE');
+                light3.add(pointLight3.position, 'y', 0, 500).listen();
+                light3.add(pointLight3.position, 'x', 0, 500).listen();
+                light3.add(pointLight3.position, 'z', 0, 500).listen();
+                light3.open();
+
+                var light4 = gui.addFolder('Light 4 - BLACK');
+                light4.add(pointLight3.position, 'y', 0, 500).listen();
+                light4.add(pointLight3.position, 'x', 0, 500).listen();
+                light4.add(pointLight3.position, 'z', 0, 500).listen();
+                light4.open();
+
+                var glassShardObject = glassObject;
+                var glassShardGui = gui.addFolder('Glass Object');
+                glassShardGui.add(glassShardObject.position, 'y', -10, 10).listen();
+                glassShardGui.add(glassShardObject.position, 'x', -10, 10).listen();
+                glassShardGui.add(glassShardObject.position, 'z', -10, 10).listen();
+                glassShardGui.open();
+
+
+
+                gui.add(options, 'reset');
+            }
+
+
+            let analyserFreq = function() {
+                let average = analyser.getAverageFrequency();
+
+                if( average > 40 ) {
+                    glassShard.position.y += .77;
+
+                    setTimeout(resetAnimation, 100);
+                }
+
+
+            };
+
+            let resetAnimation = function() {
+                if(glassShard) {
+                    glassShard.position.y = 0;
+                }
+            };
+
+            //controls.update();
+
+            controls.update();
+
+
+
+
+
+            const render = function() {
+                requestAnimationFrame(render);
+
+                if(soundPlaying) {
+                    analyserFreq();
+                }
+
+
+                controls.update();
+
+                renderer.render(scene, camera);
+            };
+
+
+
+            render();
+        </script>
+        <script src="https://cdn.plyr.io/3.3.22/plyr.js"></script>
+
+
+    </body>
+</html>
+
