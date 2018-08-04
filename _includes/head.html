@@ -36,7 +36,7 @@
     {% comment %}{% include schema.html %}{% endcomment %}
 
     <!-- social -->
-    {% if page.title %}<meta property="og:title" content="{{ page.title | escape }}">{% endif %}
+    {% comment %} {% if page.title %}<meta property="og:title" content="{{ page.title | escape }}">{% endif %}
     {% unless page.description == nil or page.description == '' %}<meta property="og:description" content="{{ page.description | escape }}">{% endunless %}
     {% unless page.image == nil or page.image == '' %}
         <meta property="og:image" content="{{ page.image }}">
@@ -46,7 +46,44 @@
             {% endunless %}
     {% endunless %}
     {% if page.url %}<meta property="og:url" content="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url }}">{% endif %}
+    <meta name="twitter:card" content="summary_large_image"> {% endcomment %}
+
+    <!-- social -->
     <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:type"   content="website" />
+    {% unless page.title == nil or page.title == '' %}
+        <meta property="og:title" content="{{ page.title | escape }}">
+        <meta name="twitter:title" content="{{ page.title | escape }}" />
+        {% else %}
+        {% unless site.title == nil or site.title == '' %}
+        <meta property="og:title" content="{{ site.title | escape }}">
+        <meta name="twitter:title" content="{{ site.title | escape }}" />
+        {% endunless %}
+    {% endunless %}
+    {% unless page.description == nil or page.description == '' %}
+        <meta property="og:description" content="{{ page.description | escape }}">
+        <meta name="twitter:description" content="{{ page.description | escape }}" />
+    {% else %}
+        {% unless site.description == nil or site.description == '' %}
+            <meta property="og:description" content="{{ site.description | escape }}">
+            <meta name="twitter:description" content="{{ site.description | escape }}" />
+        {% endunless %}
+    {% endunless %}
+
+    {% unless page.image == nil or page.image == '' %}
+        <meta property="og:image" content="{{ page.image.url }}">
+        <meta name="twitter:image" content="{{ page.image.url }}" />
+        {% else %}
+        {% unless site.image == nil or site.image == '' %}
+        <meta property="og:image" content="https:{{ site.image }}">
+        <meta name="twitter:image" content="https:{{ site.image }}" />
+        {% endunless %}
+    {% endunless %}
+
+    {% if page.url %}
+        <meta property="og:url" content="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url }}">
+        <meta name="twitter:site" content="{{ page.url | replace: 'index.html', '' | prepend: site.baseurl | prepend: site.url }}" />
+    {% endif %}
 
     {% if jekyll.environment == 'production' and site.google_tag_manager_id %}
     <!-- Google Tag Manager -->
