@@ -441,42 +441,43 @@
                 cam.add(camera.position, 'y', 0, 100).listen();
                 cam.add(camera.position, 'x', 0, 100).listen();
                 cam.add(camera.position, 'z', 0, 100).listen();
-                cam.open();
+                cam.close();
 
                  var light1 = gui.addFolder('Light 1 - RED');
                 light1.add(pointLight1.position, 'y', 0, 500).listen();
                 light1.add(pointLight1.position, 'x', 0, 500).listen();
                 light1.add(pointLight1.position, 'z', 0, 500).listen();
-                light1.open();
+                light1.close();
 
                  var light2 = gui.addFolder('Light 2 - GREEN');
                 light2.add(pointLight2.position, 'y', 0, 500).listen();
                 light2.add(pointLight2.position, 'x', 0, 500).listen();
                 light2.add(pointLight2.position, 'z', 0, 500).listen();
-                light2.open();
+                light2.close();
 
                 var light3 = gui.addFolder('Light 3 - BLUE');
                 light3.add(pointLight3.position, 'y', 0, 500).listen();
                 light3.add(pointLight3.position, 'x', 0, 500).listen();
                 light3.add(pointLight3.position, 'z', 0, 500).listen();
-                light3.open();
+                light3.close();
 
                 var light4 = gui.addFolder('Light 4 - BLACK');
                 light4.add(pointLight3.position, 'y', 0, 500).listen();
                 light4.add(pointLight3.position, 'x', 0, 500).listen();
                 light4.add(pointLight3.position, 'z', 0, 500).listen();
-                light4.open();
+                light4.close();
 
                 var glassShardObject = glassObject;
                 var glassShardGui = gui.addFolder('Glass Object');
                 glassShardGui.add(glassShardObject.position, 'y', -10, 10).listen();
                 glassShardGui.add(glassShardObject.position, 'x', -10, 10).listen();
                 glassShardGui.add(glassShardObject.position, 'z', -10, 10).listen();
-                glassShardGui.open();
+                glassShardGui.close();
 
 
 
                 gui.add(options, 'reset');
+                gui.close();
             }
 
 
