@@ -3,7 +3,7 @@ title: Credits
 date: 2018-08-03 23:50:00 Z
 position: 6
 is-nav: true
-main-description: These are the peeps that helped make Coded Glass!
+main-description: The brains that made Coded Glass!
 contributors:
 - name: Liss Lafleur
   image: "/uploads/LaFleur_Headshot_BW_2018(WEB).jpg"
