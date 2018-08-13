@@ -5,11 +5,11 @@ position: 6
 is-nav: true
 main-description: The brains that made Coded Glass!
 contributors:
-- name: Liss Lafleur
+- name: Liss LaFleur
   image: "/uploads/Liss_CG_Headshot.jpg"
   summary_text: 'Liss Lafleur is the artist and project coordinator of Coded Glass.
-    She is an  artist, activist, and educator based in Dallas, TX. [www.LissLaFleur.com](https://www.lisslafleur.com/) '
-  url: 
+    She is an  artist, activist, and educator based in Dallas, TX. '
+  url: https://www.lisslafleur.com/
 - name: Bri Camp
   image: "/uploads/5b53eb0de709444742c0e810.png"
   summary_text: Bri Camp is a front-end developer at <a href="https://fictivekin.com">Fictive
