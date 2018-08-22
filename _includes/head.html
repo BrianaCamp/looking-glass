@@ -72,11 +72,11 @@
 
     {% unless page.image == nil or page.image == '' %}
         <meta property="og:image" content="{{ page.image }}">
-        <meta name="twitter:image" content="{{ page.image }}" />
+        <meta name="twitter:image" content="{{ site.baseurl | prepend: site.url }}{{ page.image }}" />
         {% else %}
         {% unless site.image == nil or site.image == '' %}
         <meta property="og:image" content="{{ site.image }}">
-        <meta name="twitter:image" content="{{ site.image }}" />
+        <meta name="twitter:image" content="{{ site.baseurl | prepend: site.url }}{{ site.image }}" />
         {% endunless %}
     {% endunless %}
 
