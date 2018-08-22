@@ -52,7 +52,7 @@
     
         
         <meta property="og:image" content="/uploads/social-content.jpg">
-        <meta name="twitter:image" content="/uploads/social-content.jpg" />
+        <meta name="twitter:image" content="https://www.codedglass.com/uploads/social-content.jpg" />
         
     
 
@@ -169,7 +169,7 @@
 
             // load a sound and set it as the Audio object's buffer
             let audioLoader = new THREE.AudioLoader();
-            audioLoader.load( '/uploads/morsecode-504225.mp3', function( buffer ) {
+            audioLoader.load( '/uploads/morsecode_slow.mp3', function( buffer ) {
 
                 sound.setBuffer( buffer );
                 sound.setLoop(true);
@@ -343,7 +343,7 @@
 
             let loader = new THREE.OBJLoader( manager );
             let glassShard;
-            loader.load('/uploads/Glass_Shard_2.obj', function( object ) {
+            loader.load('/uploads/Glass_Test_1.obj', function( object ) {
                 glassShard = object;
                 object.castShadow = true;
                 object.receiveShadow = true;
@@ -409,7 +409,7 @@
             //let objLoader = new THREE.OBJLoader();
             //objLoader.setMaterials(materials);
 
-            //objLoader.load('/uploads/Glass_Shard_2.obj', function(object) {
+            //objLoader.load('/uploads/Glass_Test_1.obj', function(object) {
                 //scene.add(object);
                 //object.position.y = -1;
                 //object.rotateY(10.9);
