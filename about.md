@@ -10,10 +10,7 @@ about_text: "*Coded Glass* explores the urgency of the #metoo movement, the role
   #metoo tweets as source material, this project uses stained glass imagery as both
   a form for data visualization and a metaphor for creating communal sacred space.
   This project is funded by an Immersive Scholar Residency at the Hunt Library, and
-  the Andrew W. Mellon Foundation.\n\n> Me Too is a movement to, among other things,
-  radicalize the notion of mass healing. As a community we create a lot of space for
-  fighting and pushing back but not enough for connecting and healing. - Tarana Burke,
-  founder of #metoo"
+  the Andrew W. Mellon Foundation."
 contributors:
 - name: Liss LaFleur
   image: "/uploads/shard-hero5.jpg"
