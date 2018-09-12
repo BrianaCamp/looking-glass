@@ -1,7 +1,6 @@
 ---
 title: Credits
 date: 2018-08-03 23:50:00 Z
-published: false
 position: 6
 is-nav: true
 main-description: The dream team that makes Coded Glass!
