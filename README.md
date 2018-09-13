@@ -20,6 +20,11 @@ Running `yarn start` will start the jekyll server and the task that watches for 
 
 After initial setup, if changes are made to the packages needed for the project, run `yarn` to get the latest.
 
+You'll see the site on: http://127.0.0.1:4000
+
+## Troubleshooting: 
+If your changes aren't showing, do try refreshing the server by quitting yarn and running `yarn start` again to regenerate the site.
+
 
 ## Using SiteLeaf
 
