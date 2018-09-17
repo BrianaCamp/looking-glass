@@ -3,9 +3,9 @@ title: About
 permalink: "/about/"
 position: 1
 is-nav: true
-about_text: "*“Me Too is a movement to, among other things, radicalize the notion
+about_text: "`\"Me Too is a movement to, among other things, radicalize the notion
   of mass healing. As a community we create a lot of space for fighting and pushing
-  back but not enough for connecting and healing.” \n- Tarana Burke, founder of #metoo*\n\n**Coded
+  back but not enough for connecting and healing.” \n- Tarana Burke, founder of #metoo`\n\n**Coded
   Glass** explores the urgency of the #metoo movement, the role of social technology,
   and the ways in which individual narratives can shape the web as a form of community
   building through the metaphor of glass, a rich art historical material. Using the
