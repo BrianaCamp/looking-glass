@@ -51,7 +51,7 @@ SiteLeaf uses Jekyll and the Liquid template engine. Here are some general tips 
 
 The base Jekyll templates have hooks to several fields that will help with SEO and social metadata:
 
-*   `site.description` - controls meta description. Changed from site settings.
+*   `site.description` - controls meta description. Changed from site settings. (TEST)
 *   `site.keywords` - controls meta keywords. Changed from site settings.
 *   `page.title` - controls `<title>` and the open graph title tag (also used by Twitter). You get this field by default in Jekyll, so name your page/content something appropriate.
 *   `page.description` - overrides meta description on a page-by-page basis. This can either be added to the metadata scope for pages or collections or can be added manually as needed.
