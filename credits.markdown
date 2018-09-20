@@ -26,13 +26,13 @@ contributors:
   summary_text: 'Erica Hayes is an NCSU Libraries Fellow based in the Copyright &
     Digital Scholarship Center at the NCSU Libraries. She is the Project Manager on
     the Immersive Scholar grant funded by the Andrew W. Mellon Foundation.   '
-  url: 
+  url: https://github.com/ericayhayes
 - name: Micah Vandegrift
   image: "/uploads/micah.jpg"
   summary_text: Micah is the lead Principal Investigator on the Immersive Scholar
     project and a Fulbright-Schuman Fellow researching ‘open scholarship’ practices
     and infrastructure.
-  url: 
+  url: 'http://micahvandegrift.github.io/ '
 - name: 'Todd Stoffer '
   image: "/uploads/todd.jpg"
   summary_text: Todd Stoffer is a Digital Technologies Development Librarian at NCSU
