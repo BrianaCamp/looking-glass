@@ -10,7 +10,7 @@ about_text: "\"Me Too is a movement to, among other things, radicalize the notio
   #metoo"
 windows:
 - title: 'Installation View '
-  image: "/uploads/full_LaFleur_Notbesilent.png"
+  image: "/uploads/full_LaFleur_Notbesilent1080.png"
   summary_text: 'The virtual windows for this project are played using a responsive
     net-based image viewer. They should ideally be viewed on 20 - 40 ft screens, and
     range from 30 - 45 minutes in length. Clicking on each window will launch the
