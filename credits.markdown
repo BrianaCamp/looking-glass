@@ -26,6 +26,12 @@ contributors:
   summary_text: Shelby Hallman is the Research Librarian for Engineering & Entrepreneurship
     at NCSU Libraries and Co-PI on the Immersive Scholar grant.
   url: 
+- name: 'Todd Stoffer '
+  image: "/uploads/todd.jpg"
+  summary_text: Todd Stoffer is a Digital Technologies Development Librarian at NCSU
+    Libraries working to provide technical leadership and hands on programming for
+    a portfolio of digital library projects in the Digital Library Initiatives department.
+  url: 
 - name: Katelyn Hudson
   image: "/uploads/Katelyn_CG_Headshot.jpg"
   summary_text: Katelyn Hudson is a student assistant for Coded Glass. She is New
