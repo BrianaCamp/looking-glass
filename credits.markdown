@@ -35,21 +35,19 @@ contributors:
   url: 'http://micahvandegrift.github.io/ '
 - name: 'Todd Stoffer '
   image: "/uploads/todd.jpg"
-  summary_text: Todd Stoffer is a Digital Technologies Development Librarian at NCSU
-    Libraries working to provide technical leadership and hands on programming for
-    a portfolio of digital library projects in the Digital Library Initiatives department.
+  summary_text: 'Todd Stoffer is a Digital Technologies Development Librarian at NCSU
+    Libraries working to provide technical leadership for a portfolio of digital library
+    projects in the Digital Library Initiatives. '
   url: 'http://toddstoffer.github.io/ '
 - name: 'Jacob Shelby '
   image: "/uploads/jacob.jpg"
-  summary_text: 'Jacob is the Metadata Technologies Librarian at NCSU Libraries, where
-    he supports the Libraries’ metadata needs and provides data expertise for NCSU
-    students and faculty. Jacob specializes in data modeling and design.
-
-'
+  summary_text: Jacob is the Metadata Technologies Librarian at NCSU Libraries, where
+    he supports the Libraries’ metadata needs and provides data expertise. Jacob specializes
+    in data modeling and design.
   url: https://jacobshelby.org/
 - name: 'Markus Wust '
   image: "/uploads/markus.jpg"
-  summary_text: 'Digital Research and Scholarship Librarian at NCSU. '
+  summary_text: 'Markus Wust is a Digital Research and Scholarship Librarian at NCSU. '
   url: 
 - name: Katelyn Hudson
   image: "/uploads/Katelyn_CG_Headshot.jpg"
