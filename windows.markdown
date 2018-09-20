@@ -9,6 +9,13 @@ about_text: "\"Me Too is a movement to, among other things, radicalize the notio
   back but not enough for connecting and healing.\" \n\n -Tarana Burke, founder of
   #metoo"
 windows:
+- title: 'Installation View '
+  image: "/uploads/full_LaFleur_Notbesilent.png"
+  summary_text: 'The virtual windows for this project are played using a responsive
+    net-based image viewer. They should ideally be viewed on 20 - 40 ft screens, and
+    range from 30 - 45 minutes in length. Clicking on each window will launch the
+    full play thru of that specific window, scaled for a 20 ft. display. '
+  url: 
 - title: If Not Now Then When If Not Me Then Who
   image: "/uploads/Window1.png"
   summary_text: 'Out of the 2,629,581 tweets collected, the majority of English-language
