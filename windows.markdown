@@ -43,10 +43,10 @@ windows:
 - title: Metoo
   image: "/uploads/Window5.png"
   summary_text: 'From October 1, 2017 to August 15, 2018 the words “respect,” “inclusion,”
-    and “equality” appears 12,341 times out of the total 2,629,581 wetimes in English-language
-    tweets collected using related to #metoo on Twitter. Respect appears 7657 times,
-    Inclusion 616 times, Equality 4068 times. The protest sign in this design was
-    inspired by a #metoo protest in Los Angeles, CA on November 12, 2017.'
+    and “equality” appear 12,341 times out of the total 2,629,581 times in English-language
+    tweets collected using #metoo on Twitter. Respect appears 7657 times, Inclusion
+    616 times, Equality 4068 times. The protest sign in this design was inspired by
+    a #metoo protest in Los Angeles, CA on November 12, 2017.'
   url: https://imvr.lib.ncsu.edu/play/292/
 - title: "#RESIST"
   image: "/uploads/Window6.png"
