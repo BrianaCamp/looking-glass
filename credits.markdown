@@ -15,6 +15,17 @@ contributors:
     Kin</a> and a developer at [Girls Who Code Walla Walla](https://girlswhocodeww.glitch.me/).
     She built and designed the Coded Glass site and architecture
   url: https://brianacamp.github.io
+- name: 'Erica Hayes '
+  image: "/uploads/erica.jpg"
+  summary_text: 'Erica Hayes is an NCSU Libraries Fellow based in the Copyright &
+    Digital Scholarship Center at the NCSU Libraries. She is the Project Manager on
+    the Immersive Scholar grant funded by the Andrew W. Mellon Foundation.   '
+  url: 
+- name: Shelby Hallman
+  image: "/uploads/Shelby.jpg"
+  summary_text: Shelby Hallman is the Research Librarian for Engineering & Entrepreneurship
+    at NCSU Libraries and Co-PI on the Immersive Scholar grant.
+  url: 
 - name: Katelyn Hudson
   image: "/uploads/Katelyn_CG_Headshot.jpg"
   summary_text: Katelyn Hudson is a student assistant for Coded Glass. She is New
@@ -27,14 +38,8 @@ contributors:
     Media Artist and upcoming graduate of the University of North Texas, and specializes
     in 3D Modeling and Printing, Sound Design, and video editing.
   url: 
-- name: 'Erica Hayes '
-  image: 
-  summary_text: 'Erica Hayes is an NCSU Libraries Fellow based in the Copyright &
-    Digital Scholarship Center at the NCSU Libraries. She is the Project Manager on
-    the Immersive Scholar grant funded by the Andrew W. Mellon Foundation.   '
-  url: 
 - name: Anthony Fuqua
-  image: "/uploads/20180909_232025.jpg"
+  image: "/uploads/Anthony.jpg"
   summary_text: Anthony Fuqua is a student assistant for Coded Glass. He is a New
     Media Artist and upcoming graduate of the University of North Texas, and specializes
     in multi-platform interactive content, audio visual effects, and graphic design.
