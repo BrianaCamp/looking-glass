@@ -3,7 +3,6 @@ title: Credits
 date: 2018-08-03 23:50:00 Z
 position: 6
 is-nav: true
-main-description: The dream team that makes Coded Glass!
 contributors:
 - name: Liss LaFleur
   image: "/uploads/Liss_CG_Headshot.jpg"
@@ -27,6 +26,18 @@ contributors:
   summary_text: Eduardo Miranda is a student assistant for Coded Glass. He is a New
     Media Artist and upcoming graduate of the University of North Texas, and specializes
     in 3D Modeling and Printing, Sound Design, and video editing.
+  url: 
+- name: 'Erica Hayes '
+  image: 
+  summary_text: 'Erica Hayes is an NCSU Libraries Fellow based in the Copyright &
+    Digital Scholarship Center at the NCSU Libraries. She is the Project Manager on
+    the Immersive Scholar grant funded by the Andrew W. Mellon Foundation.   '
+  url: 
+- name: Anthony Fuqua
+  image: "/uploads/20180909_232025.jpg"
+  summary_text: Anthony Fuqua is a student assistant for Coded Glass. He is a New
+    Media Artist and upcoming graduate of the University of North Texas, and specializes
+    in multi-platform interactive content, audio visual effects, and graphic design.
   url: 
 layout: credits
 ---
