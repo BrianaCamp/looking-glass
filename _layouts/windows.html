@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<section class="section-windows">
+    <div class="container">
+        <div class="grid medium--grid--2up">
+            <div class="grid__item">
+                <h1 class="page-title">{{ page.title }}</h1>
+                <div class="text">
+                    {{ page.about_text | markdownify | smartify }}
+                </div>
+            </div>
+        </div>
+</section>
+<section class="section section--flush-top">
+    <div class="container">
+        <div class="grid medium--grid--2up">
+        {% unless page.windows == nil or page.windows == '' %}
+            {% for item in page.windows %}
+                <div class="grid__item">
+                    <ul class="box-content__list">
+                            <li class="box-content__list-item">
+                                <div class="box-content box-content--top">
+                                    <p class="box-content__title">{% if forloop.index <=9 %}0{% endif %}{{ forloop.index }} {{ item.title }}</p>
+                                </div>
+                                <div class="flex-between flex-between--2">
+                                    <div class="box-content box-content--no-top">
+                                        <a href="{{ item.url }}"><img src="{{ item.image }}" alt="image viewer of {{ item.title }}"></a>
+                                    </div>
+
+                                </div>
+
+                                <div class="box-content box-content--no-top">
+                                    <h4 class="box-content__title">summary:</h4>
+                                    <div>{{ item.summary_text | markdownify | smartify }}</div>
+                                </div>
+                            </li>
+                    </ul>
+                </div>
+                {% endfor %}
+            {% endunless %}
+        </div>
+    </div>
+</section>

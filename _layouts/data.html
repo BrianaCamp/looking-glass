@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<section class="section-windows">
+    <div class="container">
+        <div class="grid medium--grid--2up">
+            <div class="grid__item">
+                <h1 class="page-title">{{ page.title }}</h1>
+            </div>
+        </div>
+</section>
+<section class="section section--flush-top">
+    <div class="container">
+        <div class="grid medium--grid--2up">
+        {% unless page.data == nil or page.data == '' %}
+            {% for item in page.data %}
+              <div class="grid__item">
+                <ul class="box-content__list">
+                  <li>
+                    <div class="box-content box-content--top">
+                      <div class="flex-between flex-between--2">
+
+                        <iframe width="900" height="800" frameborder="0" scrolling="no" src="{{item.src}}"></iframe>
+
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              {% endfor %}
+          {% endunless %}
+        </div>
+
+
+    </div>
+</section>
