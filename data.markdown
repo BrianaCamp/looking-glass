@@ -1,7 +1,7 @@
 ---
 title: data
-permalink: "/data/"
 date: 2018-07-24 01:40:00 Z
+permalink: "/data/"
 position: 2
 is-nav: true
 data:
@@ -11,3 +11,4 @@ data:
 - src: "//plot.ly/~toddstoffer/4.embed"
 layout: data
 ---
+
