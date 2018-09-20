@@ -9,6 +9,7 @@ data:
 - src: "//plot.ly/~toddstoffer/4.embed"
 - src: "//plot.ly/~toddstoffer/8.embed"
 - src: "//plot.ly/~toddstoffer/4.embed"
+- src: "/uploads/markus.jpg"
 layout: data
 ---
 
