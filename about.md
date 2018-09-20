@@ -6,11 +6,13 @@ is-nav: true
 about_text: "*Coded Glass* explores the urgency of the #metoo movement, the role of
   social technology, and the ways in which individual narratives can shape the web
   as a form of community building through the metaphor of glass, a rich art historical
-  material. \n\nUsing the collected data and analysis of 2,629,581 #metoo tweets as
-  source material, this project uses stained glass imagery as both a form of data
-  visualization and a metaphor for creating communal sacred space. This project is
-  funded by an [Immersive Scholar](https://www.immersivescholar.org/) residency at
-  the [NCSU Libraries](https://www.lib.ncsu.edu/), and the Andrew W. Mellon Foundation."
+  material. \n\nUsing collected data and analysis of 2,629,581 #metoo tweets from
+  October 1, 2017 to August 15, 2018 as source material, this project showcases virtual
+  stained glass windows of protest signs, emojis, and hashtags from the #metoo movement
+  as a form of data visualization and metaphor for creating communal sacred spaces.
+  This project is funded by an [Immersive Scholar](https://www.immersivescholar.org/)
+  residency at the [NCSU Libraries](https://www.lib.ncsu.edu/), and the Andrew W.
+  Mellon Foundation."
 contributors:
 - name: Liss LaFleur
   image: "/uploads/shard-hero5.jpg"
