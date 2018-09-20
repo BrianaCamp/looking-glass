@@ -16,12 +16,6 @@ contributors:
     Kin</a> and a developer at [Girls Who Code Walla Walla](https://girlswhocodeww.glitch.me/).
     She built and designed the Coded Glass site and architecture
   url: https://brianacamp.github.io
-- name: Micah Vandegrift
-  image: "/uploads/micah.jpg"
-  summary_text: Micah is the lead Principal Investigator on the Immersive Scholar
-    project and a Fulbright-Schuman Fellow researching ‘open scholarship’ practices
-    and infrastructure.
-  url: 
 - name: Shelby Hallman
   image: "/uploads/Shelby.jpg"
   summary_text: Shelby Hallman is the Research Librarian for Engineering & Entrepreneurship
@@ -32,6 +26,12 @@ contributors:
   summary_text: 'Erica Hayes is an NCSU Libraries Fellow based in the Copyright &
     Digital Scholarship Center at the NCSU Libraries. She is the Project Manager on
     the Immersive Scholar grant funded by the Andrew W. Mellon Foundation.   '
+  url: 
+- name: Micah Vandegrift
+  image: "/uploads/micah.jpg"
+  summary_text: Micah is the lead Principal Investigator on the Immersive Scholar
+    project and a Fulbright-Schuman Fellow researching ‘open scholarship’ practices
+    and infrastructure.
   url: 
 - name: 'Todd Stoffer '
   image: "/uploads/todd.jpg"
