@@ -9,7 +9,8 @@ data:
 - src: "//plot.ly/~toddstoffer/4.embed"
 - src: "//plot.ly/~toddstoffer/8.embed"
 - src: "//plot.ly/~toddstoffer/4.embed"
-- src: "/uploads/markus.jpg"
+- src: "/uploads//uploads/emoji_wordcloud_top_50_CORRECTED.png "
+- src: "/uploads/emoji_wordcloud_top_100_CORRECTED.png"
 layout: data
 ---
 
