@@ -47,6 +47,10 @@ contributors:
 
 '
   url: https://jacobshelby.org/
+- name: 'Markus Wust '
+  image: "/uploads/markus.jpg"
+  summary_text: 'Digital Research and Scholarship Librarian at NCSU. '
+  url: 
 - name: Katelyn Hudson
   image: "/uploads/Katelyn_CG_Headshot.jpg"
   summary_text: Katelyn Hudson is a student assistant for Coded Glass. She is New
