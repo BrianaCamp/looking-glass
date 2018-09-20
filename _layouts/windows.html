@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<section class="section">
+<section class="section-windows">
     <div class="container">
         <div class="grid medium--grid--2up">
             <div class="grid__item">
@@ -15,7 +15,7 @@ layout: default
 </section>
 <section class="section section--flush-top">
     <div class="container">
-        <div class="grid medium--grid--2up large--grid--3up">
+        <div class="grid medium--grid--2up">
         {% unless page.windows == nil or page.windows == '' %}
             {% for item in page.windows %}
                 <div class="grid__item">
@@ -26,10 +26,9 @@ layout: default
                                 </div>
                                 <div class="flex-between flex-between--2">
                                     <div class="box-content box-content--no-top">
-                                        <h4 class="box-content__title">Video:</h4>
-                                        <a href="{{ item.url }}"><img src="{{ item.image }}" alt="video of {{ item.title }}"></a>
+                                        <a href="{{ item.url }}"><img src="{{ item.image }}" alt="image viewer of {{ item.title }}"></a>
                                     </div>
-                                    
+
                                 </div>
 
                                 <div class="box-content box-content--no-top">
