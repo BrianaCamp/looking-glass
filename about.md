@@ -15,8 +15,9 @@ about_text: "*Coded Glass* explores the urgency of the #metoo movement, the role
   Mellon Foundation.\n\n<iframe src=\"https://player.vimeo.com/video/290814465\" width=\"640\"
   height=\"360\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>\n<p><a
   href=\"https://vimeo.com/290814465\">Immersive Scholar Artist Talk - Fall 18</a>
-  from <a href=\"https://vimeo.com/lisslafleur\">Liss LaFleur</a> on <a href=\"https://vimeo.com\">Vimeo</a>.</p>\n\n<script
-  src=”http://bibbase.org/show?bib=[https://www.zotero.org/lisslafleur/items]&jsonp=1″></script>\n\n"
+  from <a href=\"https://vimeo.com/lisslafleur\">Liss LaFleur</a> on <a href=\"https://vimeo.com\">Vimeo</a>.</p>\n\n<a
+  href='https://www.zotero.org/lisslafleur/items'><img src='' alt='' 540px border='0'
+  /></a>\n"
 contributors:
 - name: Liss LaFleur
   image: "/uploads/shard-hero5.jpg"
