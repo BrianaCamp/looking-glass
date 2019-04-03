@@ -34,4 +34,7 @@ layout: default
         </div>
     </div>
 </section>
+{% unless page.webby_link == '' or page.webby_link == nil %}
+    {{ page.webby_link }}
+{% endunless %}
 <script src="https://cdn.plyr.io/3.3.22/plyr.js"></script>
