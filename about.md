@@ -12,8 +12,9 @@ about_text: "*Coded Glass* explores the urgency of the #metoo movement, the role
   as a form of data visualization and metaphor for creating communal sacred spaces.
   This project is funded by an [Immersive Scholar](https://www.immersivescholar.org/)
   residency at the [NCSU Libraries](https://www.lib.ncsu.edu/), and the Andrew W.
-  Mellon Foundation.\n\n<iframe src=\"https://e.issuu.com/anonymous-embed.html?u=demoupload&d=190401173447-aef07408aec94101a9b480d7cfdc57de\"
-  style=\"border:none;width:100%;height:500px;\" allowfullscreen></iframe>\n\n\n"
+  Mellon Foundation.\n\n<iframe src=\"https://cdn.flipsnack.com/widget/v2/widget.html?hash=f1n5bjpzy\"
+  width=\"100%\" height=\"480\" seamless=\"seamless\" scrolling=\"no\" frameBorder=\"0\"
+  allowFullScreen></iframe>\n\n\n"
 contributors:
 - name: Liss LaFleur
   image: "/uploads/shard-hero5.jpg"
